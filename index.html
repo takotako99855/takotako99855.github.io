@@ -182,7 +182,8 @@
       <header class="hero">
         <h1>ホロライブ告知まとめ<br /><span class="accent">生誕・周年ライブ＆新曲</span>を逃さない</h1>
         <p class="lede">JP・EN・ID全ブランチを対象に、開催が決まっているライブ／これから来る生誕・周年記念日／直近の新曲リリースを一枚に集約しています。</p>
-        <div class="snapshot"><span class="dot"></span><span>掲載情報の確認時点：<b>2026年10月30日（金）</b> ／ 次回チェックで新しい告知があれば、このページとチャット通知が更新されます</span></div>
+        <!-- 最終チェック日時：表示は script 内の単一データ項目 LAST_CHECKED から生成されます。更新時はそこの値だけを差し替えてください。 -->
+        <div class="snapshot"><span class="dot"></span><span>最終チェック日時：<b id="last-checked-value"></b> ／ 次回チェックで新しい告知があれば、このページとチャット通知が更新されます</span></div>
 
         <div class="nextup" id="nextup" aria-live="polite">
           <div>
@@ -252,8 +253,13 @@
 
     <script>
       "use strict";
+      /* ===== 最終チェック日時（単一データ項目） =====
+         ページ上部の「最終チェック日時」表示はこの値だけから生成されます。
+         次回チェック時はこの1行の値だけを差し替えてください。 */
+      var LAST_CHECKED = "2026年10月30日 20:10（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
+      document.getElementById("last-checked-value").textContent = LAST_CHECKED;
 
       function d(y,m,dd){ return new Date(y, m-1, dd); }
       function daysUntil(date){ return Math.round((date - TODAY) / 86400000); }
