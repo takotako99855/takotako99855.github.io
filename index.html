@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>ホロライブ告知まとめ</title>
+    <style>
+      :root{
+        --bg:#f4f7fa; --surface:#ffffff; --surface2:#eaf1f6; --ink:#16222e; --ink2:#4a5d6e; --line:#d7e2ea;
+        --cyan:#0e9ec7; --cyan-soft:#dff4fb; --pink:#e5487f; --pink-soft:#fde7f0;
+        --gold:#b97e10; --gold-soft:#fdf3d7; --green:#1d8a5f; --green-soft:#e0f4ea;
+        --id:#7c4dbc; --id-soft:#efe8fa;
+        --shadow:0 1px 3px rgba(22,34,46,.08),0 8px 24px rgba(22,34,46,.06);
+        --radius:14px;
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0c1219; --surface:#141e29; --surface2:#1a2836; --ink:#e8f1f7; --ink2:#9db2c2; --line:#26394b;
+          --cyan:#3ec6ee; --cyan-soft:#12303d; --pink:#f472a8; --pink-soft:#3d1c2c;
+          --gold:#e8b84b; --gold-soft:#38300f; --green:#4cc38a; --green-soft:#143527;
+          --id:#b79ced; --id-soft:#2a2140;
+          --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+        }
+      }
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{margin:0;background:var(--bg);color:var(--ink);
+        font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif;
+        line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+      a{color:var(--cyan);text-decoration:none}
+      a:hover{text-decoration:underline}
+      .wrap{max-width:1060px;margin:0 auto;padding:0 18px 72px}
+
+      /* ---------- hero ---------- */
+      .hero{padding:38px 0 8px}
+      .hero h1{font-size:clamp(27px,5.4vw,40px);line-height:1.25;margin:0 0 10px;font-weight:800;letter-spacing:.01em}
+      .hero h1 .accent{color:var(--cyan)}
+      .hero p.lede{margin:0;color:var(--ink2);max-width:640px;font-size:15.5px}
+      .snapshot{display:inline-flex;align-items:center;gap:7px;margin-top:16px;background:var(--surface);
+        border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:13px;color:var(--ink2);box-shadow:var(--shadow)}
+      .snapshot b{color:var(--ink);font-weight:700}
+      .dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+
+      /* ---------- next priority countdown ---------- */
+      .nextup{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+        box-shadow:var(--shadow);padding:18px 20px;display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+      .nextup .label{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--pink)}
+      .nextup .what{font-size:18px;font-weight:800;line-height:1.4}
+      .nextup .what small{display:block;font-size:13px;font-weight:600;color:var(--ink2)}
+      .count{margin-left:auto;text-align:right}
+      .count .num{font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+      .count .num span{font-size:14px;font-weight:700;color:var(--ink2)}
+      .count .date{font-size:12.5px;color:var(--ink2);margin-top:4px}
+
+      /* ---------- section heads ---------- */
+      section{margin-top:44px}
+      .shead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+      .shead h2{font-size:21px;margin:0;font-weight:800}
+      .shead .note{font-size:13px;color:var(--ink2)}
+      .sub{color:var(--ink2);font-size:14px;margin:0 0 16px;max-width:680px}
+
+      /* ---------- nearest milestones ---------- */
+      .mlist{display:flex;flex-direction:column;gap:10px}
+      .mrow{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+        padding:13px 17px;display:flex;align-items:center;gap:14px}
+      .mrow .rank{width:32px;height:32px;border-radius:50%;background:var(--cyan-soft);color:var(--cyan);
+        font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;flex:none;font-variant-numeric:tabular-nums}
+      .mrow .rank.first{background:var(--pink);color:#fff}
+      .mrow .mname{font-weight:800;font-size:16.5px;line-height:1.35}
+      .mrow .mname .star{color:var(--pink);font-size:13px;vertical-align:2px}
+      .mrow .msub{font-size:12.5px;color:var(--ink2);font-weight:600}
+      .mrow .mdate{margin-left:auto;text-align:right;flex:none}
+      .mrow .mdays{font-size:19px;font-weight:800;line-height:1.25;font-variant-numeric:tabular-nums}
+      .mrow .mdays.soon{color:var(--pink)}
+      .mrow .mday{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+
+      /* ---------- feed tabs ---------- */
+      .tabs{display:flex;gap:5px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:5px;margin:16px 0 12px}
+      .tab{flex:1;appearance:none;border:none;background:transparent;color:var(--ink2);font:inherit;
+        font-size:15px;font-weight:800;padding:10px 8px;border-radius:8px;cursor:pointer}
+      .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+      .tab .cnt{font-size:12px;font-weight:700;color:var(--ink2);margin-left:5px}
+      .tab:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+      /* ---------- filters ---------- */
+      .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+      .chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+        font:inherit;font-size:13.5px;font-weight:700;padding:7px 15px;border-radius:999px;cursor:pointer}
+      .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+      .chip:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+      /* ---------- feed ---------- */
+      .feed{display:flex;flex-direction:column;gap:10px}
+      /* two-part headed sections: upcoming vs done, colour-coded */
+      .feed-group{display:flex;flex-direction:column;gap:10px}
+      .feed-group + .feed-group{margin-top:26px}
+      .feed-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+        padding:13px 16px;border-radius:12px;border:1.5px solid}
+      .feed-head .fh-main{min-width:0}
+      .feed-head h3{margin:0;font-size:19px;font-weight:800;line-height:1.3;display:flex;align-items:center;gap:10px}
+      .feed-head .fh-desc{font-size:13px;margin:2px 0 0;line-height:1.5}
+      .feed-head .fh-badge{font-size:11.5px;font-weight:800;letter-spacing:.04em;padding:3px 10px;border-radius:999px;white-space:nowrap}
+      .feed-head .fh-count{margin-left:auto;font-size:13px;font-weight:800;white-space:nowrap;
+        background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums}
+      .feed-head.is-upcoming{background:var(--cyan-soft);border-color:var(--cyan);color:var(--ink)}
+      .feed-head.is-upcoming h3{color:var(--cyan)}
+      .feed-head.is-upcoming .fh-desc{color:var(--ink2)}
+      .feed-head.is-upcoming .fh-badge{background:var(--cyan);color:#fff}
+      .feed-head.is-done{background:var(--green-soft);border-color:var(--green);color:var(--ink)}
+      .feed-head.is-done h3{color:var(--green)}
+      .feed-head.is-done .fh-desc{color:var(--ink2)}
+      .feed-head.is-done .fh-badge{background:var(--green);color:#fff}
+      @media (prefers-color-scheme: dark){
+        .feed-head.is-upcoming .fh-badge{color:#0c1219}
+        .feed-head.is-done .fh-badge{color:#0c1219}
+      }
+      .item.is-upcoming .when{background:var(--cyan-soft);border-radius:8px;border-right:none;padding:8px 6px}
+      .item.is-done .when{background:var(--green-soft);border-radius:8px;border-right:none;padding:8px 6px}
+      .item.is-upcoming .when .rel{color:var(--cyan)}
+      .item.is-done .when .rel{color:var(--green)}
+      .tag.t-upcoming{background:var(--cyan-soft);color:var(--cyan);border:1px solid var(--cyan)}
+      .tag.t-done{background:var(--green-soft);color:var(--green);border:1px solid var(--green)}
+      .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 14px;font-size:13px;color:var(--ink2);font-weight:600}
+      .legend span{display:inline-flex;align-items:center;gap:7px}
+      .legend .sw{width:14px;height:14px;border-radius:4px;flex:none;border:1.5px solid}
+      .legend .sw.up{background:var(--cyan-soft);border-color:var(--cyan)}
+      .legend .sw.done{background:var(--green-soft);border-color:var(--green)}
+      .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+        padding:15px 17px;display:grid;grid-template-columns:86px 1fr;gap:6px 16px}
+      .item .when{text-align:center;border-right:1px solid var(--line);padding-right:14px}
+      .item .when .md{font-size:19px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+      .item .when .dow{font-size:12px;color:var(--ink2);font-weight:700}
+      .item .when .rel{font-size:11.5px;margin-top:5px;font-weight:800;color:var(--cyan)}
+      .item .when .rel.past{color:var(--ink2)}
+      .item h3{margin:0 0 3px;font-size:16.5px;line-height:1.45;font-weight:800}
+      .item h3 .star{color:var(--pink);font-size:13px;vertical-align:2px}
+      .item .meta{font-size:13px;color:var(--ink2)}
+      .item .meta .venue::before{content:"📍 ";}
+      .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+      .tag{font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px;letter-spacing:.03em}
+      .t-jp{background:var(--cyan-soft);color:var(--cyan)}
+      .t-en{background:var(--pink-soft);color:var(--pink)}
+      .t-id{background:var(--id-soft);color:var(--id)}
+      .t-type{background:var(--surface2);color:var(--ink2)}
+      .t-pri{background:var(--gold-soft);color:var(--gold)}
+      .item .src{font-size:12.5px;margin-top:7px}
+      .empty{display:none;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);padding:26px;text-align:center;color:var(--ink2);font-size:14px}
+
+      /* ---------- two columns ---------- */
+      .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+      @media (max-width:760px){.cols{grid-template-columns:1fr}.item{grid-template-columns:70px 1fr}}
+      .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+      .panel h3{margin:0 0 4px;font-size:16.5px;font-weight:800}
+      .panel .psub{font-size:13px;color:var(--ink2);margin:0 0 12px}
+      ul.clean{list-style:none;margin:0;padding:0}
+      ul.clean li{padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+      ul.clean li:first-child{border-top:none;padding-top:2px}
+      ul.clean .li-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+      ul.clean .ttl{font-weight:700}
+      ul.clean .who{color:var(--ink2);font-size:12.5px}
+      ul.clean .d{font-size:12.5px;color:var(--ink2);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+      .steps{counter-reset:st;list-style:none;margin:0;padding:0}
+      .steps li{counter-increment:st;position:relative;padding:12px 0 12px 42px;border-top:1px solid var(--line);font-size:14px}
+      .steps li:first-child{border-top:none}
+      .steps li::before{content:counter(st);position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:50%;
+        background:var(--cyan-soft);color:var(--cyan);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+      .steps b{display:block;font-size:14.5px}
+      .steps span{color:var(--ink2);font-size:13px}
+      .honest{background:var(--gold-soft);border-radius:10px;padding:12px 14px;font-size:13px;margin-top:14px}
+      .honest b{color:var(--gold)}
+
+      footer{margin-top:52px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--ink2)}
+      footer ul{margin:6px 0 0;padding-left:18px}
+      footer li{margin:2px 0}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+
+      <header class="hero">
+        <h1>ホロライブ告知まとめ<br /><span class="accent">生誕・周年ライブ＆新曲</span>を逃さない</h1>
+        <p class="lede">JP・EN・ID全ブランチを対象に、開催が決まっているライブ／これから来る生誕・周年記念日／直近の新曲リリースを一枚に集約しています。</p>
+        <div class="snapshot"><span class="dot"></span><span>掲載情報の確認時点：<b>2026年10月30日（金）</b> ／ 次回チェックで新しい告知があれば、このページとチャット通知が更新されます</span></div>
+
+        <div class="nextup" id="nextup" aria-live="polite">
+          <div>
+            <div class="label">いちばん近い生誕・周年</div>
+            <div class="what" id="nextup-what">読み込み中…</div>
+          </div>
+          <div class="count">
+            <div class="num" id="nextup-num">–</div>
+            <div class="date" id="nextup-date"></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ NEAREST MILESTONES ============ -->
+      <section>
+        <div class="shead"><h2>生誕・周年が近い順</h2><span class="note">JP・EN・ID全ブランチから近い順に5件</span></div>
+        <p class="sub">全メンバーの誕生日・デビュー記念日から、今日にいちばん近い5件を並べています。記念日が近づくと生誕3Dライブや周年ライブの告知が出ることが多いので、目安にどうぞ。</p>
+        <div class="mlist" id="mlist"></div>
+      </section>
+
+      <!-- ============ FEED ============ -->
+      <section>
+        <div class="shead"><h2>告知フィード</h2><span class="note">開催日・発売日が確定しているもの</span></div>
+        <div class="tabs" role="tablist" aria-label="告知の種類">
+          <button class="tab" role="tab" data-t="live" aria-selected="true">ライブ・イベント<span class="cnt" id="cnt-live"></span></button>
+          <button class="tab" role="tab" data-t="song" aria-selected="false">新曲・リリース<span class="cnt" id="cnt-song"></span></button>
+        </div>
+        <div class="filters" role="group" aria-label="ブランチで絞り込み">
+          <button class="chip" data-f="all" aria-pressed="true">すべて</button>
+          <button class="chip" data-f="jp" aria-pressed="false">JP</button>
+          <button class="chip" data-f="en" aria-pressed="false">EN</button>
+          <button class="chip" data-f="id" aria-pressed="false">ID</button>
+        </div>
+        <div class="legend" aria-label="色分けの凡例">
+          <span><span class="sw up"></span><span id="legend-up">青 ＝ 予定（これから）</span></span>
+          <span><span class="sw done"></span><span id="legend-done">緑 ＝ 済み（発売・開催済み）</span></span>
+        </div>
+        <div class="feed" id="feed"></div>
+        <div class="empty" id="empty">この条件に当てはまる告知は、今のところありません。</div>
+      </section>
+
+      <!-- ============ WATCH + HOW ============ -->
+      <section>
+        <div class="panel">
+            <h3>通知の仕組みと、遅れの正直な話</h3>
+            <p class="psub">このページは開いた瞬間に最新化されるものではなく、チェックのたびに更新されるスナップショットです。</p>
+            <ol class="steps">
+              <li><b>公式サイトは2時間ごとに軽量チェック</b><span>hololive公式ニュースに新しい記事が増えたときだけ内容を確認し、対象の告知ならチャットに要約が届いて、このページにも反映されます。何もない回は静かです。</span></li>
+              <li><b>Xは朝・夜の横断検索で補完</b><span>メンバー名 ×「生誕祭／周年／ライブ／新曲」で告知ポストを拾います。公式アカウントが引用・告知したものはここで捕まえやすい設計です。</span></li>
+              <li><b>スマホ通知は最大で数時間〜半日遅れることがあります</b><span>常時監視ではないため、告知の直後に届くわけではありません。生誕・周年ライブは数週間前に告知されることが多く実用上は問題になりにくい一方、サプライズ公開の新曲は後追いになります。</span></li>
+              <li><b>最速の第一報だけはX公式通知が本命</b><span>推し本人のXアカウント通知（ベル）をONにしておくのが、今でも一番速くて確実です。このページとチャット通知は「集約と取りこぼし防止」の担当です。</span></li>
+            </ol>
+            <div class="honest"><b>正直ポイント：</b>個人Xの全ポストをリアルタイム監視する仕組みではないので、拾い漏れゼロは保証できません。だからこそ優先8人は検索の重点リストに入れてあります。</div>
+        </div>
+      </section>
+
+      <footer>
+        <div>出典（確認時点：2026年10月30日）</div>
+        <ul>
+          <li><a href="https://hololive.hololivepro.com/" target="_blank" rel="noopener">hololive公式サイト</a>／<a href="https://hololive.hololivepro.com/en/news/" target="_blank" rel="noopener">公式ニュース（EN）</a>／<a href="https://cover-corp.com/news/year/2026" target="_blank" rel="noopener">カバー株式会社ニュース</a></li>
+          <li><a href="https://hololive-tsuushin.com/event-schedule/" target="_blank" rel="noopener">イベントスケジュール（ホロライブ通信）</a>／<a href="https://hololive-tsuushin.com/kinenbi/" target="_blank" rel="noopener">記念日一覧（ホロライブ通信）</a></li>
+          <li><a href="https://holotame.com/music/" target="_blank" rel="noopener">音楽データベース（ホロため）</a>／<a href="https://db.holoplayer.jp/" target="_blank" rel="noopener">ホロ曲DB</a>／<a href="https://holoviewers.net/hololive-event-calendar/" target="_blank" rel="noopener">イベント＆発売カレンダー総まとめ</a></li>
+        </ul>
+        <p style="margin-top:12px">チケットの販売状況や開演時間などの最終確認は、各イベントの公式ページでお願いします。日程は予告なく変更される場合があります。</p>
+      </footer>
+    </div>
+
+    <script>
+      "use strict";
+      var TODAY = new Date(); TODAY.setHours(0,0,0,0);
+      var DOW = ["日","月","火","水","木","金","土"];
+
+      function d(y,m,dd){ return new Date(y, m-1, dd); }
+      function daysUntil(date){ return Math.round((date - TODAY) / 86400000); }
+      function fmt(date){ return (date.getMonth()+1) + "/" + date.getDate() + "（" + DOW[date.getDay()] + "）"; }
+      function nextYearly(month, day){
+        var t = d(TODAY.getFullYear(), month, day);
+        if (t < TODAY) t = d(TODAY.getFullYear()+1, month, day);
+        return t;
+      }
+
+      /* ---------- milestones: birthdays / debut anniversaries, all branches ----------
+         Full roster rebuilt 2026-10-30 from the hololive-tsuushin anniversary calendar
+         (JP incl. DEV_IS) plus the official talent profiles for EN / ID.
+         Graduated / terminated members are excluded. FLOW GLOW, which debuted as a
+         unit on 2024-11-09, is kept as one unit entry. */
+      var MILESTONES = [
+        /* ----- JP birthdays ----- */
+        { name:"兎田ぺこら", branch:"JP", kind:"誕生日", m:1, d:12 },
+        { name:"尾丸ポルカ", branch:"JP", kind:"誕生日", m:1, d:30 },
+        { name:"儒烏風亭らでん", branch:"JP", kind:"誕生日", m:2, d:4 },
+        { name:"癒月ちょこ", branch:"JP", kind:"誕生日", m:2, d:14 },
+        { name:"アキ・ローゼンタール", branch:"JP", kind:"誕生日", m:2, d:17 },
+        { name:"猫又おかゆ", branch:"JP", kind:"誕生日", m:2, d:22 },
+        { name:"火威青", branch:"JP", kind:"誕生日", m:2, d:27 },
+        { name:"桃鈴ねね", branch:"JP", kind:"誕生日", m:3, d:2 },
+        { name:"さくらみこ", branch:"JP", kind:"誕生日", m:3, d:5 },
+        { name:"博衣こより", branch:"JP", kind:"誕生日", m:3, d:15 },
+        { name:"星街すいせい", branch:"JP", kind:"誕生日・デビュー記念日", m:3, d:22 },
+        { name:"不知火フレア", branch:"JP", kind:"誕生日", m:4, d:2 },
+        { name:"音乃瀬奏", branch:"JP", kind:"誕生日", m:4, d:20 },
+        { name:"天音かなた", branch:"JP", kind:"誕生日", m:4, d:22 },
+        { name:"一条莉々華", branch:"JP", kind:"誕生日", m:5, d:12 },
+        { name:"ときのそら", branch:"JP", kind:"誕生日", m:5, d:15 },
+        { name:"ロボ子さん", branch:"JP", kind:"誕生日", m:5, d:23 },
+        { name:"ラプラス・ダークネス", branch:"JP", kind:"誕生日", m:5, d:25 },
+        { name:"響咲リオナ", branch:"JP", kind:"誕生日", m:5, d:29 },
+        { name:"角巻わため", branch:"JP", kind:"誕生日", m:6, d:6 },
+        { name:"轟はじめ", branch:"JP", kind:"誕生日", m:6, d:7 },
+        { name:"鷹嶺ルイ", branch:"JP", kind:"誕生日", m:6, d:11 },
+        { name:"水宮枢", branch:"JP", kind:"誕生日", m:6, d:16 },
+        { name:"風真いろは", branch:"JP", kind:"誕生日", m:6, d:18 },
+        { name:"AZKi", branch:"JP", kind:"誕生日", m:7, d:1 },
+        { name:"大空スバル", branch:"JP", kind:"誕生日", m:7, d:2 },
+        { name:"輪堂千速", branch:"JP", kind:"誕生日", m:7, d:8 },
+        { name:"夏色まつり", branch:"JP", kind:"誕生日", m:7, d:22 },
+        { name:"虎金妃笑虎", branch:"JP", kind:"誕生日", m:7, d:25 },
+        { name:"宝鐘マリン", branch:"JP", kind:"誕生日", m:7, d:30 },
+        { name:"常闇トワ", branch:"JP", kind:"誕生日", m:8, d:8 },
+        { name:"赤井はあと", branch:"JP", kind:"誕生日", m:8, d:10 },
+        { name:"大神ミオ", branch:"JP", kind:"誕生日", m:8, d:20 },
+        { name:"綺々羅々ヴィヴィ", branch:"JP", kind:"誕生日", m:8, d:27 },
+        { name:"獅白ぼたん", branch:"JP", kind:"誕生日", m:9, d:8 },
+        { name:"戌神ころね", branch:"JP", kind:"誕生日", m:10, d:1 },
+        { name:"白上フブキ", branch:"JP", kind:"誕生日", m:10, d:5 },
+        { name:"姫森ルーナ", branch:"JP", kind:"誕生日", m:10, d:10 },
+        { name:"雪花ラミィ", branch:"JP", kind:"誕生日", m:11, d:15 },
+        { name:"白銀ノエル", branch:"JP", kind:"誕生日", m:11, d:24 },
+        { name:"百鬼あやめ", branch:"JP", kind:"誕生日", m:12, d:13 },
+        /* ----- JP debut anniversaries ----- */
+        { name:"常闇トワ", branch:"JP", kind:"デビュー記念日（7周年）", m:1, d:3 },
+        { name:"姫森ルーナ", branch:"JP", kind:"デビュー記念日", m:1, d:4 },
+        { name:"ロボ子さん", branch:"JP", kind:"デビュー記念日", m:3, d:4 },
+        { name:"猫又おかゆ", branch:"JP", kind:"デビュー記念日", m:4, d:6 },
+        { name:"戌神ころね", branch:"JP", kind:"デビュー記念日", m:4, d:13 },
+        { name:"アキ・ローゼンタール", branch:"JP", kind:"デビュー記念日", m:6, d:1 },
+        { name:"白上フブキ", branch:"JP", kind:"デビュー記念日", m:6, d:1 },
+        { name:"夏色まつり", branch:"JP", kind:"デビュー記念日", m:6, d:1 },
+        { name:"赤井はあと", branch:"JP", kind:"デビュー記念日", m:6, d:2 },
+        { name:"兎田ぺこら", branch:"JP", kind:"デビュー記念日", m:7, d:17 },
+        { name:"さくらみこ", branch:"JP", kind:"デビュー記念日", m:8, d:1 },
+        { name:"不知火フレア", branch:"JP", kind:"デビュー記念日", m:8, d:7 },
+        { name:"白銀ノエル", branch:"JP", kind:"デビュー記念日", m:8, d:8 },
+        { name:"宝鐘マリン", branch:"JP", kind:"デビュー記念日", m:8, d:11 },
+        { name:"雪花ラミィ", branch:"JP", kind:"デビュー記念日", m:8, d:12 },
+        { name:"桃鈴ねね", branch:"JP", kind:"デビュー記念日", m:8, d:13 },
+        { name:"獅白ぼたん", branch:"JP", kind:"デビュー記念日", m:8, d:14 },
+        { name:"尾丸ポルカ", branch:"JP", kind:"デビュー記念日", m:8, d:16 },
+        { name:"百鬼あやめ", branch:"JP", kind:"デビュー記念日", m:9, d:3 },
+        { name:"癒月ちょこ", branch:"JP", kind:"デビュー記念日", m:9, d:4 },
+        { name:"ときのそら", branch:"JP", kind:"デビュー記念日", m:9, d:7 },
+        { name:"火威青", branch:"JP", kind:"デビュー記念日", m:9, d:9 },
+        { name:"音乃瀬奏", branch:"JP", kind:"デビュー記念日", m:9, d:9 },
+        { name:"一条莉々華", branch:"JP", kind:"デビュー記念日", m:9, d:9 },
+        { name:"儒烏風亭らでん", branch:"JP", kind:"デビュー記念日", m:9, d:10 },
+        { name:"轟はじめ", branch:"JP", kind:"デビュー記念日", m:9, d:10 },
+        { name:"大空スバル", branch:"JP", kind:"デビュー記念日", m:9, d:16 },
+        { name:"FLOW GLOW", branch:"JP", kind:"デビュー記念日（2周年）", m:11, d:9 },
+        { name:"AZKi", branch:"JP", kind:"デビュー記念日", m:11, d:15 },
+        { name:"ラプラス・ダークネス", branch:"JP", kind:"デビュー記念日（5周年）", m:11, d:26 },
+        { name:"鷹嶺ルイ", branch:"JP", kind:"デビュー記念日", m:11, d:27 },
+        { name:"博衣こより", branch:"JP", kind:"デビュー記念日", m:11, d:28 },
+        { name:"風真いろは", branch:"JP", kind:"デビュー記念日", m:11, d:30 },
+        { name:"大神ミオ", branch:"JP", kind:"デビュー記念日", m:12, d:7 },
+        { name:"天音かなた", branch:"JP", kind:"デビュー記念日", m:12, d:27 },
+        { name:"角巻わため", branch:"JP", kind:"デビュー記念日", m:12, d:29 },
+        /* ----- EN birthdays ----- */
+        { name:"フワワ・アビスガード", branch:"EN", kind:"誕生日", m:2, d:1 },
+        { name:"モココ・アビスガード", branch:"EN", kind:"誕生日", m:2, d:2 },
+        { name:"ハコス・ベールズ", branch:"EN", kind:"誕生日", m:2, d:29 },
+        { name:"IRyS", branch:"EN", kind:"誕生日", m:3, d:7 },
+        { name:"オーロ・クロニー", branch:"EN", kind:"誕生日", m:3, d:14 },
+        { name:"森カリオペ", branch:"EN", kind:"誕生日", m:4, d:4 },
+        { name:"古石ビジュー", branch:"EN", kind:"誕生日", m:4, d:14 },
+        { name:"エリザベス・ローズ・ブラッドフレイム", branch:"EN", kind:"誕生日", m:4, d:25 },
+        { name:"シオリ・ノヴェラ", branch:"EN", kind:"誕生日", m:5, d:2 },
+        { name:"ラオーラ・パンテーラ", branch:"EN", kind:"誕生日", m:5, d:11 },
+        { name:"一伊那尓栖", branch:"EN", kind:"誕生日", m:5, d:20 },
+        { name:"小鳥遊キアラ", branch:"EN", kind:"誕生日", m:7, d:6 },
+        { name:"ジジ・ムリン", branch:"EN", kind:"誕生日", m:10, d:18 },
+        { name:"セシリア・イマーグリーン", branch:"EN", kind:"誕生日", m:11, d:11 },
+        { name:"ネリッサ・レイヴンクロフト", branch:"EN", kind:"誕生日", m:11, d:21 },
+        /* ----- EN debut anniversaries ----- */
+        { name:"エリザベス・ローズ・ブラッドフレイム", branch:"EN", kind:"デビュー記念日", m:6, d:22 },
+        { name:"ジジ・ムリン", branch:"EN", kind:"デビュー記念日", m:6, d:22 },
+        { name:"セシリア・イマーグリーン", branch:"EN", kind:"デビュー記念日", m:6, d:23 },
+        { name:"ラオーラ・パンテーラ", branch:"EN", kind:"デビュー記念日", m:6, d:23 },
+        { name:"IRyS", branch:"EN", kind:"デビュー記念日", m:7, d:11 },
+        { name:"シオリ・ノヴェラ", branch:"EN", kind:"デビュー記念日", m:7, d:30 },
+        { name:"古石ビジュー", branch:"EN", kind:"デビュー記念日", m:7, d:30 },
+        { name:"ネリッサ・レイヴンクロフト", branch:"EN", kind:"デビュー記念日", m:7, d:31 },
+        { name:"フワワ・アビスガード", branch:"EN", kind:"デビュー記念日", m:7, d:31 },
+        { name:"モココ・アビスガード", branch:"EN", kind:"デビュー記念日", m:7, d:31 },
+        { name:"オーロ・クロニー", branch:"EN", kind:"デビュー記念日", m:8, d:22 },
+        { name:"ハコス・ベールズ", branch:"EN", kind:"デビュー記念日", m:8, d:22 },
+        { name:"森カリオペ", branch:"EN", kind:"デビュー記念日", m:9, d:12 },
+        { name:"小鳥遊キアラ", branch:"EN", kind:"デビュー記念日", m:9, d:12 },
+        { name:"一伊那尓栖", branch:"EN", kind:"デビュー記念日", m:9, d:13 },
+        /* ----- ID birthdays ----- */
+        { name:"アユンダ・リス", branch:"ID", kind:"誕生日", m:1, d:15 },
+        { name:"ムーナ・ホシノヴァ", branch:"ID", kind:"誕生日", m:2, d:15 },
+        { name:"アーニャ・メルフィッサ", branch:"ID", kind:"誕生日", m:3, d:12 },
+        { name:"アイラニ・イオフィフティーン", branch:"ID", kind:"誕生日", m:7, d:15 },
+        { name:"カエラ・コヴァルスキア", branch:"ID", kind:"誕生日", m:8, d:30 },
+        { name:"パヴォリア・レイネ", branch:"ID", kind:"誕生日", m:9, d:9 },
+        { name:"クレイジー・オリー", branch:"ID", kind:"誕生日", m:10, d:13 },
+        { name:"ベスティア・ゼータ", branch:"ID", kind:"誕生日", m:11, d:7 },
+        { name:"こぼ・かなえる", branch:"ID", kind:"誕生日", m:12, d:12 },
+        /* ----- ID debut anniversaries ----- */
+        { name:"ベスティア・ゼータ", branch:"ID", kind:"デビュー記念日", m:3, d:25 },
+        { name:"カエラ・コヴァルスキア", branch:"ID", kind:"デビュー記念日", m:3, d:26 },
+        { name:"こぼ・かなえる", branch:"ID", kind:"デビュー記念日", m:3, d:27 },
+        { name:"アユンダ・リス", branch:"ID", kind:"デビュー記念日", m:4, d:10 },
+        { name:"ムーナ・ホシノヴァ", branch:"ID", kind:"デビュー記念日", m:4, d:11 },
+        { name:"アイラニ・イオフィフティーン", branch:"ID", kind:"デビュー記念日", m:4, d:12 },
+        { name:"クレイジー・オリー", branch:"ID", kind:"デビュー記念日", m:12, d:4 },
+        { name:"アーニャ・メルフィッサ", branch:"ID", kind:"デビュー記念日", m:12, d:5 },
+        { name:"パヴォリア・レイネ", branch:"ID", kind:"デビュー記念日", m:12, d:6 }
+      ];
+      var mrows = MILESTONES.map(function(x){
+        var date = nextYearly(x.m, x.d);
+        return { x:x, date:date, days:daysUntil(date) };
+      }).sort(function(a,b){ return a.days - b.days; });
+
+      /* hero countdown = nearest milestone overall */
+      document.getElementById("nextup-what").innerHTML =
+        mrows[0].x.name + "<small>" + mrows[0].x.kind + " ・ " + mrows[0].date.getFullYear() + "年" + fmt(mrows[0].date) + "</small>";
+      document.getElementById("nextup-num").innerHTML = "あと " + mrows[0].days + "<span> 日</span>";
+      document.getElementById("nextup-date").textContent =
+        "その次は " + mrows[1].x.name + "（" + mrows[1].x.kind + "、あと" + mrows[1].days + "日）";
+
+      /* top 5 nearest milestones */
+      var mlist = document.getElementById("mlist");
+      mrows.slice(0,5).forEach(function(r, i){
+        var row = document.createElement("div");
+        row.className = "mrow";
+        row.innerHTML =
+          '<div class="rank' + (i === 0 ? " first" : "") + '">' + (i + 1) + '</div>' +
+          '<div><div class="mname">' + r.x.name + '</div>' +
+          '<div class="msub">' + r.x.branch + " ・ " + r.x.kind + '</div></div>' +
+          '<div class="mdate"><div class="mdays' + (r.days <= 30 ? " soon" : "") + '">あと' + r.days + '日</div>' +
+          '<div class="mday">' + r.date.getFullYear() + "年" + fmt(r.date) + '</div></div>';
+        mlist.appendChild(row);
+      });
+
+      /* ---------- feed data (verified 2026-10-30) ---------- */
+      var FEED = [
+        { date:d(2026,10,3),  type:"song", branch:"en", pri:true,  title:"「Sweet My Love」リリース", who:"ネリッサ・レイヴンクロフト", venue:"", note:"Adventの歌姫によるオリジナル曲。" },
+        { date:d(2026,10,8),  type:"song", branch:"jp", pri:true,  title:"「Rewrite the Answer」リリース", who:"常闇トワ", venue:"", note:"10月はトワ様の新曲が2曲。" },
+        { date:d(2026,10,11), type:"song", branch:"jp", pri:false, title:"「RISING 酸」リリース", who:"博衣こより", venue:"", note:"作詞・作曲・編曲はケンモチヒデフミ。12月のソロライブに向けた一曲。" },
+        { date:d(2026,10,14), type:"song", branch:"jp", pri:false, title:"2ndアルバム『Blooming Cinderella』リリース", who:"さくらみこ", venue:"", note:"10/29にはKアリーナ横浜で2ndライブ「Blooming Parade!!」を開催済み。" },
+        { date:d(2026,10,18), type:"song", branch:"jp", pri:true,  title:"「Shallow Shadow」リリース", who:"常闇トワ", venue:"", note:"公式ゲーム『hololive Dreams』書き下ろしのソロ新曲。" },
+        { date:d(2026,10,18), type:"song", branch:"en", pri:false, title:"「La Mascarade」MV公開", who:"hololive English -Promise-", venue:"", note:"IRyS、オーロ・クロニー、ハコス・ベールズのユニットオリジナル曲。" },
+        { date:d(2026,10,20), type:"song", branch:"id", pri:false, title:"「Forge My Soul」リリース", who:"カエラ・コヴァルスキア", venue:"", note:"『hololive Dreams』書き下ろしソロ新曲シリーズのID組。" },
+        { date:d(2026,10,21), type:"song", branch:"jp", pri:true,  title:"「BLOCK YOU」＆アルバム『ラプ様アーティスト化計画』リリース", who:"ラプラス・ダークネス", venue:"", note:"「BLOCK YOU」はjon-YAKITORY作詞作曲。ラプ様の音楽活動が本格化。" },
+        { date:d(2026,10,22), type:"song", branch:"jp", pri:false, title:"「アマリリス」リリース", who:"獅白ぼたん", venue:"", note:"『hololive Dreams』書き下ろしソロ新曲。" },
+        { date:d(2026,10,22), type:"song", branch:"id", pri:false, title:"「S.O.R.e : Song of Reality」リリース", who:"アユンダ・リス", venue:"", note:"IDからのオリジナル曲リリース。" },
+        { date:d(2026,10,24), type:"song", branch:"en", pri:true,  title:"「CORE//UNBREAKABLE」リリース", who:"古石ビジュー", venue:"", note:"『hololive Dreams』書き下ろし。ビジューの新境地となる一曲。" },
+        { date:d(2026,10,24), type:"song", branch:"jp", pri:false, title:"「ゾンビゾンビゾンビ」リリース", who:"星街すいせい", venue:"", note:"なとり提供曲。同日に歌舞伎町でハロウィン路上ライブも開催。" },
+        { date:d(2026,10,28), type:"song", branch:"en", pri:true,  title:"「怪宴スペクタクル」リリース", who:"hololive IDOL PROJECT（夏色まつり、Vestia Zeta、ネリッサ・レイヴンクロフト、儒烏風亭らでん、轟はじめ）", venue:"", note:"JP・ID・EN横断ユニット曲。ネリッサ参加。" },
+        { date:d(2026,11,4),  type:"song", branch:"jp", pri:false, title:"9周年記念EP『CHECK！』リリース", who:"ときのそら", venue:"", note:"リード曲「スキ⇄スキ☆うろぼろす」は、じん作詞作曲。11/7のアリーナライブ直前の発売。" },
+        { date:d(2026,11,7),  type:"live", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
+        { date:d(2026,11,12), type:"live", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
+        { date:d(2026,11,14), type:"live", branch:"jp", pri:false, title:"ホロライブ わちゃわちゃ学園祭2026（〜11/15）", who:"ホロライブ（複数メンバー出演）", venue:"京王アリーナTOKYO", note:"14日17:00／15日16:30の2日間開催。" },
+        { date:d(2026,11,27), type:"live", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
+        { date:d(2026,11,29), type:"live", branch:"jp", pri:false, title:"ReGLOSS AR LIVE「X-ReCHORD」", who:"ReGLOSS", venue:"ARオンラインライブ", note:"9/12に公式発表されたAR演出のオンラインライブ。" },
+        { date:d(2026,12,1),  type:"live", branch:"en", pri:true,  title:"ハコス・ベールズ 1stライブ「REGALIA」", who:"ハコス・ベールズ（ゲスト：常闇トワ）", venue:"東京（詳細は公式告知で確認）", note:"ベールズ初のソロライブに、トワ様がゲスト出演決定。" },
+        { date:d(2026,12,2),  type:"song", branch:"jp", pri:false, title:"2ndアルバム リリース", who:"博衣こより", venue:"", note:"12/22の1stライブと連動したリリース。タイトル等の詳細は公式告知で確認を。" },
+        { date:d(2026,12,5),  type:"live", branch:"jp", pri:false, title:"hololive RECORDS DJ NIGHT", who:"hololive RECORDS", venue:"", note:"FC会員は抽選で無料招待。" },
+        { date:d(2026,12,16), type:"live", branch:"jp", pri:false, title:"鷹嶺ルイ 1stライブ「REBELLION」", who:"鷹嶺ルイ", venue:"Kanadevia Hall", note:"EP発売もあわせて発表されています。holoXの先輩ライブ。" },
+        { date:d(2026,12,20), type:"live", branch:"jp", pri:false, title:"対バンライブ「星降る晩餐会」", who:"星街すいせい × tuki.", venue:"Kアリーナ横浜", note:"すいせいとtuki.の対バン。" },
+        { date:d(2026,12,22), type:"live", branch:"jp", pri:false, title:"博衣こより 1stライブ「Dream Spark」", who:"博衣こより", venue:"東京ガーデンシアター", note:"18:30開演。12/2の2ndアルバムとあわせて。" },
+        { date:d(2026,12,26), type:"live", branch:"jp", pri:false, title:"「COUNTDOWN JAPAN 26/27」出演", who:"星街すいせい", venue:"幕張メッセ", note:"年末フェスへの出演決定。チケット先行受付中。" },
+        { date:d(2026,12,31), type:"live", branch:"jp", pri:false, title:"hololive RECORDS MUSIC STAGE 2027（2027年開催・日程は続報待ち）", who:"hololive RECORDS", venue:"Kアリーナ横浜", note:"ホロライブ音楽レーベルのリアルライブとして10/20に情報解禁。開催は2027年で、正確な日程は公式の続報で確認を。このカードの日付は年末の仮置きです。", approx:true }
+      ];
+
+      var feedEl = document.getElementById("feed");
+      var emptyEl = document.getElementById("empty");
+      var currentTab = "live";
+      var currentFilter = "all";
+
+      function relLabel(date){
+        var dd = daysUntil(date);
+        if (dd > 0) return "あと" + dd + "日";
+        if (dd === 0) return "本日";
+        return Math.abs(dd) + "日前";
+      }
+      function matchesFilter(it){
+        return it.type === currentTab &&
+          (currentFilter === "all" ||
+          (currentFilter === "jp" && it.branch === "jp") ||
+          (currentFilter === "en" && it.branch === "en") ||
+          (currentFilter === "id" && it.branch === "id"));
+      }
+      function createItem(it){
+        var dd = daysUntil(it.date);
+        var isUpcoming = dd >= 0;
+        var el = document.createElement("article");
+        el.className = "item " + (isUpcoming ? "is-upcoming" : "is-done");
+        var statusLabel, statusClass;
+        if (it.type === "song") {
+          statusLabel = isUpcoming ? "発売予定" : "発売済み";
+          statusClass = isUpcoming ? "t-upcoming" : "t-done";
+        } else {
+          statusLabel = isUpcoming ? "開催予定" : "開催済み";
+          statusClass = isUpcoming ? "t-upcoming" : "t-done";
+        }
+        el.innerHTML =
+          '<div class="when"><div class="md">' + (it.approx ? "2027" : (it.date.getMonth()+1) + "/" + it.date.getDate()) + '</div>' +
+          '<div class="dow">' + (it.approx ? "日程は続報待ち" : it.date.getFullYear() + " ・ " + DOW[it.date.getDay()] + "曜") + '</div>' +
+          '<div class="rel">' + (it.approx ? "情報解禁済み" : relLabel(it.date)) + '</div></div>' +
+          '<div><h3>' + it.who + "｜" + it.title + '</h3>' +
+          '<div class="meta">' + (it.venue ? '<span class="venue">' + it.venue + "</span>　" : "") + it.note + '</div>' +
+          '<div class="tags">' +
+            '<span class="tag ' + statusClass + '">' + statusLabel + '</span>' +
+            '<span class="tag t-' + it.branch + '">' + it.branch.toUpperCase() + '</span>' +
+            '<span class="tag t-type">' + (it.type === "live" ? "ライブ・イベント" : "新曲・リリース") + '</span>' +
+          '</div>' +
+          (it.src ? '<div class="src"><a href="' + it.src + '" target="_blank" rel="noopener">' + it.srcLabel + ' →</a></div>' : "") +
+          '</div>';
+        return el;
+      }
+      function createHead(kind, count){
+        /* kind: "upcoming" | "done" — wording adapts to the active tab */
+        var cfg;
+        if (currentTab === "song") {
+          cfg = kind === "upcoming"
+            ? { title:"発売予定", badge:"これから発売", desc:"まだ発売されていない新曲・アルバム・EP。発売日が近い順に並んでいます。" }
+            : { title:"発売済み", badge:"発売中・配信中", desc:"すでに発売・配信されているもの。新しい順に並んでいます — 今すぐ聴けます。" };
+        } else {
+          cfg = kind === "upcoming"
+            ? { title:"開催予定", badge:"これから開催", desc:"まだ開催されていないライブ・イベント。開催日が近い順に並んでいます。" }
+            : { title:"開催済み", badge:"終了", desc:"すでに終了したライブ・イベント。新しい順に並んでいます。" };
+        }
+        var head = document.createElement("div");
+        head.className = "feed-head " + (kind === "upcoming" ? "is-upcoming" : "is-done");
+        head.innerHTML =
+          '<div class="fh-main"><h3>' + cfg.title + '<span class="fh-badge">' + cfg.badge + '</span></h3>' +
+          '<p class="fh-desc">' + cfg.desc + '</p></div>' +
+          '<span class="fh-count">' + count + '件</span>';
+        return head;
+      }
+      function renderFeed(){
+        feedEl.innerHTML = "";
+        var filtered = FEED.filter(matchesFilter);
+        /* Part 1: upcoming — date ascending (closest first).
+           Part 2: done — date descending (newest first).
+           Singles / albums / EPs stay mixed inside each part. */
+        var upcoming = filtered.filter(function(x){ return daysUntil(x.date) >= 0; })
+          .sort(function(a,b){ return a.date - b.date; });
+        var done = filtered.filter(function(x){ return daysUntil(x.date) < 0; })
+          .sort(function(a,b){ return b.date - a.date; });
+        var shown = 0;
+        [["upcoming", upcoming], ["done", done]].forEach(function(pair){
+          var kind = pair[0], list = pair[1];
+          if (!list.length) return;
+          var group = document.createElement("div");
+          group.className = "feed-group";
+          group.setAttribute("role", "group");
+          group.setAttribute("aria-label", kind === "upcoming"
+            ? (currentTab === "song" ? "発売予定" : "開催予定")
+            : (currentTab === "song" ? "発売済み" : "開催済み"));
+          group.appendChild(createHead(kind, list.length));
+          list.forEach(function(it){ group.appendChild(createItem(it)); shown++; });
+          feedEl.appendChild(group);
+        });
+        emptyEl.style.display = shown ? "none" : "block";
+      }
+      renderFeed();
+
+      document.getElementById("cnt-live").textContent =
+        "（" + FEED.filter(function(x){ return x.type === "live"; }).length + "件）";
+      document.getElementById("cnt-song").textContent =
+        "（" + FEED.filter(function(x){ return x.type === "song"; }).length + "件）";
+      document.querySelectorAll(".tab").forEach(function(tab){
+        tab.addEventListener("click", function(){
+          document.querySelectorAll(".tab").forEach(function(t){ t.setAttribute("aria-selected","false"); });
+          tab.setAttribute("aria-selected","true");
+          currentTab = tab.getAttribute("data-t");
+          renderFeed();
+        });
+      });
+
+      document.querySelectorAll(".chip").forEach(function(chip){
+        chip.addEventListener("click", function(){
+          document.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed","false"); });
+          chip.setAttribute("aria-pressed","true");
+          currentFilter = chip.getAttribute("data-f");
+          renderFeed();
+        });
+      });
+    </script>
+  </body>
+</html>
