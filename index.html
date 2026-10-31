@@ -83,6 +83,11 @@
       .tab[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
       .tab .cnt{font-size:12px;font-weight:700;color:var(--ink2);margin-left:5px}
       .tab:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+      @media (max-width:560px){
+        .tabs{flex-wrap:wrap}
+        .tab{flex:1 1 30%;font-size:13.5px;padding:9px 4px;line-height:1.35}
+        .tab .cnt{display:block;margin-left:0}
+      }
 
       /* ---------- filters ---------- */
       .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
@@ -180,8 +185,8 @@
     <div class="wrap">
 
       <header class="hero">
-        <h1>ホロライブ告知まとめ<br /><span class="accent">生誕・周年ライブ＆新曲</span>を逃さない</h1>
-        <p class="lede">JP・EN・ID全ブランチを対象に、開催が決まっているライブ／これから来る生誕・周年記念日／直近の新曲リリースを一枚に集約しています。</p>
+        <h1>ホロライブ告知まとめ<br /><span class="accent">生誕・周年ライブ＆新曲・カバー曲</span>を逃さない</h1>
+        <p class="lede">JP・EN・ID全ブランチを対象に、開催が決まっているライブ／これから来る生誕・周年記念日／直近の新曲・カバー曲リリースを一枚に集約しています。</p>
         <!-- 最終チェック日時／次回チェック日時：表示は script 内の単一データ項目 LAST_CHECKED / NEXT_CHECK から生成されます。更新時はそこの値だけを差し替えてください。 -->
         <div class="snapshot"><span class="dot"></span><span>最終チェック日時：<b id="last-checked-value"></b> ／ 次回チェック日時：<b id="next-check-value"></b> ／ 次回チェックで新しい告知があれば、このページとチャット通知が更新されます</span></div>
 
@@ -210,6 +215,7 @@
         <div class="tabs" role="tablist" aria-label="告知の種類">
           <button class="tab" role="tab" data-t="live" aria-selected="true">ライブ・イベント<span class="cnt" id="cnt-live"></span></button>
           <button class="tab" role="tab" data-t="song" aria-selected="false">新曲・リリース<span class="cnt" id="cnt-song"></span></button>
+          <button class="tab" role="tab" data-t="cover" aria-selected="false">カバー曲・リリース<span class="cnt" id="cnt-cover"></span></button>
         </div>
         <div class="filters" role="group" aria-label="ブランチで絞り込み">
           <button class="chip" data-f="all" aria-pressed="true">すべて</button>
@@ -232,7 +238,7 @@
             <p class="psub">このページは開いた瞬間に最新化されるものではなく、チェックのたびに更新されるスナップショットです。</p>
             <ol class="steps">
               <li><b>公式サイトは2時間ごとに軽量チェック</b><span>hololive公式ニュースに新しい記事が増えたときだけ内容を確認し、対象の告知ならチャットに要約が届いて、このページにも反映されます。何もない回は静かです。</span></li>
-              <li><b>Xは朝・夜の横断検索で補完</b><span>メンバー名 ×「生誕祭／周年／ライブ／新曲」で告知ポストを拾います。公式アカウントが引用・告知したものはここで捕まえやすい設計です。</span></li>
+              <li><b>Xは朝・夜の横断検索で補完</b><span>メンバー名 ×「生誕祭／周年／ライブ／新曲／カバー曲」で告知ポストを拾います。公式アカウントが引用・告知したものはここで捕まえやすい設計です。</span></li>
               <li><b>スマホ通知は最大で数時間〜半日遅れることがあります</b><span>常時監視ではないため、告知の直後に届くわけではありません。生誕・周年ライブは数週間前に告知されることが多く実用上は問題になりにくい一方、サプライズ公開の新曲は後追いになります。</span></li>
               <li><b>最速の第一報だけはX公式通知が本命</b><span>推し本人のXアカウント通知（ベル）をONにしておくのが、今でも一番速くて確実です。このページとチャット通知は「集約と取りこぼし防止」の担当です。</span></li>
             </ol>
@@ -436,7 +442,9 @@
         mlist.appendChild(row);
       });
 
-      /* ---------- feed data (verified 2026-10-30) ---------- */
+      /* ---------- feed data (verified 2026-10-30) ----------
+         type: "live" = ライブ・イベント / "song" = 新曲・リリース / "cover" = カバー曲・リリース
+         カバー曲は今後のチェックで type:"cover" としてここに追加してください。 */
       var FEED = [
         { date:d(2026,10,3),  type:"song", branch:"en", pri:true,  title:"「Sweet My Love」リリース", who:"ネリッサ・レイヴンクロフト", venue:"", note:"Adventの歌姫によるオリジナル曲。" },
         { date:d(2026,10,8),  type:"song", branch:"jp", pri:true,  title:"「Rewrite the Answer」リリース", who:"常闇トワ", venue:"", note:"10月はトワ様の新曲が2曲。" },
@@ -491,7 +499,7 @@
         var el = document.createElement("article");
         el.className = "item " + (isUpcoming ? "is-upcoming" : "is-done");
         var statusLabel, statusClass;
-        if (it.type === "song") {
+        if (it.type === "song" || it.type === "cover") {
           statusLabel = isUpcoming ? "発売予定" : "発売済み";
           statusClass = isUpcoming ? "t-upcoming" : "t-done";
         } else {
@@ -507,7 +515,7 @@
           '<div class="tags">' +
             '<span class="tag ' + statusClass + '">' + statusLabel + '</span>' +
             '<span class="tag t-' + it.branch + '">' + it.branch.toUpperCase() + '</span>' +
-            '<span class="tag t-type">' + (it.type === "live" ? "ライブ・イベント" : "新曲・リリース") + '</span>' +
+            '<span class="tag t-type">' + (it.type === "live" ? "ライブ・イベント" : it.type === "cover" ? "カバー曲・リリース" : "新曲・リリース") + '</span>' +
           '</div>' +
           (it.src ? '<div class="src"><a href="' + it.src + '" target="_blank" rel="noopener">' + it.srcLabel + ' →</a></div>' : "") +
           '</div>';
@@ -516,7 +524,11 @@
       function createHead(kind, count){
         /* kind: "upcoming" | "done" — wording adapts to the active tab */
         var cfg;
-        if (currentTab === "song") {
+        if (currentTab === "cover") {
+          cfg = kind === "upcoming"
+            ? { title:"発売予定", badge:"これから発売", desc:"まだ発売されていないカバー曲。発売日が近い順に並んでいます。" }
+            : { title:"発売済み", badge:"発売中・配信中", desc:"すでに発売・配信されているカバー曲。新しい順に並んでいます — 今すぐ聴けます。" };
+        } else if (currentTab === "song") {
           cfg = kind === "upcoming"
             ? { title:"発売予定", badge:"これから発売", desc:"まだ発売されていない新曲・アルバム・EP。発売日が近い順に並んでいます。" }
             : { title:"発売済み", badge:"発売中・配信中", desc:"すでに発売・配信されているもの。新しい順に並んでいます — 今すぐ聴けます。" };
@@ -551,8 +563,8 @@
           group.className = "feed-group";
           group.setAttribute("role", "group");
           group.setAttribute("aria-label", kind === "upcoming"
-            ? (currentTab === "song" ? "発売予定" : "開催予定")
-            : (currentTab === "song" ? "発売済み" : "開催済み"));
+            ? ((currentTab === "song" || currentTab === "cover") ? "発売予定" : "開催予定")
+            : ((currentTab === "song" || currentTab === "cover") ? "発売済み" : "開催済み"));
           group.appendChild(createHead(kind, list.length));
           list.forEach(function(it){ group.appendChild(createItem(it)); shown++; });
           feedEl.appendChild(group);
@@ -565,6 +577,8 @@
         "（" + FEED.filter(function(x){ return x.type === "live"; }).length + "件）";
       document.getElementById("cnt-song").textContent =
         "（" + FEED.filter(function(x){ return x.type === "song"; }).length + "件）";
+      document.getElementById("cnt-cover").textContent =
+        "（" + FEED.filter(function(x){ return x.type === "cover"; }).length + "件）";
       document.querySelectorAll(".tab").forEach(function(tab){
         tab.addEventListener("click", function(){
           document.querySelectorAll(".tab").forEach(function(t){ t.setAttribute("aria-selected","false"); });
