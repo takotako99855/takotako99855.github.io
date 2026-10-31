@@ -459,7 +459,7 @@
         { date:d(2026,10,24), type:"song", branch:"en", pri:true,  title:"「CORE//UNBREAKABLE」リリース", who:"古石ビジュー", venue:"", note:"『hololive Dreams』書き下ろし。ビジューの新境地となる一曲。" },
         { date:d(2026,10,24), type:"song", branch:"jp", pri:false, title:"「ゾンビゾンビゾンビ」リリース", who:"星街すいせい", venue:"", note:"なとり提供曲。同日に歌舞伎町でハロウィン路上ライブも開催。" },
         { date:d(2026,10,28), type:"song", branch:"en", pri:true,  title:"「怪宴スペクタクル」リリース", who:"hololive IDOL PROJECT（夏色まつり、Vestia Zeta、ネリッサ・レイヴンクロフト、儒烏風亭らでん、轟はじめ）", venue:"", note:"JP・ID・EN横断ユニット曲。ネリッサ参加。" },
-        { date:d(2026,10,31), type:"song", branch:"jp", pri:false, title:"「推したら引けない恋でした」リリース", who:"博衣こより・AZKi・雪花ラミィ（KoZMy）", venue:"", note:"3人のユニット「KoZMy」による新オリジナル曲。10月31日にMV公開・楽曲配信開始。<a href=\"https://youtu.be/Cl3LkvJkQzQ\" target=\"_blank\" rel=\"noopener\">MV</a> ／ <a href=\"https://cover.lnk.to/ofgkvy\" target=\"_blank\" rel=\"noopener\">配信</a>", src:"https://x.com/hakuikoyori/status/2116500514578047476", srcLabel:"出典（博衣こよりのXポスト）" },
+        { date:d(2026,10,31), type:"song", branch:"jp", pri:false, title:"「推したら引けない恋でした」リリース", who:"博衣こより・AZKi・雪花ラミィ（KoZMy）", venue:"", note:"3人のユニット「KoZMy」による新オリジナル曲。10月31日にMV公開・楽曲配信開始。<a href=\"https://youtu.be/Cl3LkvJkQzQ\" target=\"_blank\" rel=\"noopener\">MV</a>／<a href=\"https://cover.lnk.to/ofgkvy\" target=\"_blank\" rel=\"noopener\">配信</a>", src:"https://x.com/hakuikoyori/status/2116500514578047476", srcLabel:"出典ポスト（博衣こより）" },
         { date:d(2026,11,4),  type:"song", branch:"jp", pri:false, title:"9周年記念EP『CHECK！』リリース", who:"ときのそら", venue:"", note:"リード曲「スキ⇄スキ☆うろぼろす」は、じん作詞作曲。11/7のアリーナライブ直前の発売。" },
         { date:d(2026,11,7),  type:"live", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
         { date:d(2026,11,12), type:"live", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
@@ -494,9 +494,17 @@
           (currentFilter === "en" && it.branch === "en") ||
           (currentFilter === "id" && it.branch === "id"));
       }
+      function isDoneItem(it){
+        var dd = daysUntil(it.date);
+        /* 新曲・カバー曲は発売日当日（dd===0）から「発売済み」に振り分ける。
+           リリース日当日の曲が「発売予定」に残る不具合の修正。
+           ライブ・イベントは当日はまだ「開催予定」として扱う。 */
+        if (it.type === "song" || it.type === "cover") return dd <= 0;
+        return dd < 0;
+      }
       function createItem(it){
         var dd = daysUntil(it.date);
-        var isUpcoming = dd >= 0;
+        var isUpcoming = !isDoneItem(it);
         var el = document.createElement("article");
         el.className = "item " + (isUpcoming ? "is-upcoming" : "is-done");
         var statusLabel, statusClass;
@@ -552,9 +560,9 @@
         /* Part 1: upcoming — date ascending (closest first).
            Part 2: done — date descending (newest first).
            Singles / albums / EPs stay mixed inside each part. */
-        var upcoming = filtered.filter(function(x){ return daysUntil(x.date) >= 0; })
+        var upcoming = filtered.filter(function(x){ return !isDoneItem(x); })
           .sort(function(a,b){ return a.date - b.date; });
-        var done = filtered.filter(function(x){ return daysUntil(x.date) < 0; })
+        var done = filtered.filter(function(x){ return isDoneItem(x); })
           .sort(function(a,b){ return b.date - a.date; });
         var shown = 0;
         [["upcoming", upcoming], ["done", done]].forEach(function(pair){
