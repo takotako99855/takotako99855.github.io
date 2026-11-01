@@ -62,7 +62,11 @@
       .sub{color:var(--ink2);font-size:14px;margin:0 0 16px;max-width:680px}
 
       /* ---------- nearest milestones ---------- */
-      .mlist{display:flex;flex-direction:column;gap:10px}
+      .mlist{display:flex;flex-direction:column;gap:10px;max-height:396px;overflow-y:auto;overscroll-behavior:contain;
+        padding-right:6px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+      .mlist::-webkit-scrollbar{width:8px}
+      .mlist::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+      .mlist::-webkit-scrollbar-track{background:transparent}
       .mrow{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
         padding:13px 17px;display:flex;align-items:center;gap:14px}
       .mrow .rank{width:32px;height:32px;border-radius:50%;background:var(--cyan-soft);color:var(--cyan);
@@ -210,8 +214,8 @@
 
       <!-- ============ NEAREST MILESTONES ============ -->
       <section>
-        <div class="shead"><h2>生誕・周年が近い順</h2><span class="note">JP・EN・ID全ブランチから近い順に5件</span></div>
-        <p class="sub">全メンバーの誕生日・デビュー記念日から、今日にいちばん近い5件を並べています。記念日が近づくと生誕3Dライブや周年ライブの告知が出ることが多いので、目安にどうぞ。</p>
+        <div class="shead"><h2>生誕・周年が近い順</h2><span class="note">JP・EN・ID全ブランチから近い順に20件</span></div>
+        <p class="sub">全メンバーの誕生日・デビュー記念日から、今日にいちばん近い20件を並べています。下のリストはスクロールで続きが見られます。記念日が近づくと生誕3Dライブや周年ライブの告知が出ることが多いので、目安にどうぞ。</p>
         <div class="mlist" id="mlist"></div>
       </section>
 
@@ -434,9 +438,9 @@
       document.getElementById("nextup-date").textContent =
         "その次は " + mrows[1].x.name + "（" + mrows[1].x.kind + "、あと" + mrows[1].days + "日）";
 
-      /* top 5 nearest milestones */
+      /* top 20 nearest milestones (list scrolls within the section) */
       var mlist = document.getElementById("mlist");
-      mrows.slice(0,5).forEach(function(r, i){
+      mrows.slice(0,20).forEach(function(r, i){
         var row = document.createElement("div");
         row.className = "mrow";
         row.innerHTML =
