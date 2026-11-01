@@ -151,6 +151,12 @@
       .t-type{background:var(--surface2);color:var(--ink2)}
       .t-pri{background:var(--gold-soft);color:var(--gold)}
       .item .src{font-size:12.5px;margin-top:7px}
+      .item .links{display:flex;flex-direction:column;gap:5px;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
+      .item .link-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12.5px;min-width:0}
+      .item .link-label{flex:none;font-weight:800;font-size:11px;letter-spacing:.04em;padding:2px 8px;border-radius:999px;background:var(--pink-soft);color:var(--pink)}
+      .item .link-label.stream{background:var(--surface2);color:var(--ink2)}
+      .item .link-label.source{background:var(--surface2);color:var(--ink2)}
+      .item .link-url{word-break:break-all;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5}
       .empty{display:none;background:var(--surface);border:1px dashed var(--line);border-radius:var(--radius);padding:26px;text-align:center;color:var(--ink2);font-size:14px}
 
       /* ---------- two columns ---------- */
@@ -443,8 +449,10 @@
       });
 
       /* ---------- feed data (verified 2026-10-30) ----------
-         type: "live" = ライブ・イベント / "song" = 新曲・リリース / "cover" = カバー曲・リリース
-         カバー曲は今後のチェックで type:"cover" としてここに追加してください。 */
+         type: "live" = ライブ・イベント / "song" = 新曲リリース / "cover" = カバー曲リリース
+         カバー曲は今後のチェックで type:"cover" としてここに追加してください。
+         リンクは note に埋め込まず、yt（YouTube MVのURL）／stream（配信URL）／src（出典URL）
+         の各フィールドに入れてください。カード下部のリンク欄にURL全文が表示されます。 */
       var FEED = [
         { date:d(2026,10,3),  type:"song", branch:"en", pri:true,  title:"「Sweet My Love」リリース", who:"ネリッサ・レイヴンクロフト", venue:"", note:"Adventの歌姫によるオリジナル曲。" },
         { date:d(2026,10,8),  type:"song", branch:"jp", pri:true,  title:"「Rewrite the Answer」リリース", who:"常闇トワ", venue:"", note:"10月はトワ様の新曲が2曲。" },
@@ -459,9 +467,9 @@
         { date:d(2026,10,24), type:"song", branch:"en", pri:true,  title:"「CORE//UNBREAKABLE」リリース", who:"古石ビジュー", venue:"", note:"『hololive Dreams』書き下ろし。ビジューの新境地となる一曲。" },
         { date:d(2026,10,24), type:"song", branch:"jp", pri:false, title:"「ゾンビゾンビゾンビ」リリース", who:"星街すいせい", venue:"", note:"なとり提供曲。同日に歌舞伎町でハロウィン路上ライブも開催。" },
         { date:d(2026,10,28), type:"song", branch:"en", pri:true,  title:"「怪宴スペクタクル」リリース", who:"hololive IDOL PROJECT（夏色まつり、Vestia Zeta、ネリッサ・レイヴンクロフト、儒烏風亭らでん、轟はじめ）", venue:"", note:"JP・ID・EN横断ユニット曲。ネリッサ参加。" },
-        { date:d(2026,10,31), type:"song", branch:"jp", pri:false, title:"「推したら引けない恋でした」リリース", who:"博衣こより・AZKi・雪花ラミィ（KoZMy）", venue:"", note:"3人のユニット「KoZMy」による新オリジナル曲。10月31日にMV公開・楽曲配信開始。<a href=\"https://youtu.be/Cl3LkvJkQzQ\" target=\"_blank\" rel=\"noopener\">MV</a>／<a href=\"https://cover.lnk.to/ofgkvy\" target=\"_blank\" rel=\"noopener\">配信</a>", src:"https://x.com/hakuikoyori/status/2116500514578047476", srcLabel:"出典ポスト（博衣こより）" },
-        { date:d(2026,10,31), type:"cover", branch:"id", pri:false, title:"「Loveit?」カバー MV公開", who:"Vestia Zeta・夏色まつり", venue:"", note:"biz×ZERA「Loveit?」のカバー。10月31日にプレミア公開。<a href=\"https://www.youtube.com/watch?v=cQbWSAbnduc\" target=\"_blank\" rel=\"noopener\">MV</a>" },
-        { date:d(2026,10,31), type:"cover", branch:"id", pri:false, title:"「Goblok Tenan」カバー MV公開", who:"AREA15（アイラニ・イオフィフティーン、アユンダ・リス、ムーナ・ホシノヴァ）", venue:"", note:"ゲーム『Troublemaker 2 Beyond Dream』OST「Goblok Tenan」のカバー（説明欄に #coversong）。10月31日にプレミア公開。<a href=\"https://www.youtube.com/watch?v=c9yFK-ytqPg\" target=\"_blank\" rel=\"noopener\">MV</a>" },
+        { date:d(2026,10,31), type:"song", branch:"jp", pri:false, title:"「推したら引けない恋でした」リリース", who:"博衣こより・AZKi・雪花ラミィ（KoZMy）", venue:"", note:"3人のユニット「KoZMy」による新オリジナル曲。10月31日にMV公開・楽曲配信開始。", yt:"https://youtu.be/Cl3LkvJkQzQ", stream:"https://cover.lnk.to/ofgkvy", src:"https://x.com/hakuikoyori/status/2116500514578047476", srcLabel:"出典ポスト（博衣こより）" },
+        { date:d(2026,10,31), type:"cover", branch:"id", pri:false, title:"「Loveit?」カバー MV公開", who:"Vestia Zeta・夏色まつり", venue:"", note:"biz×ZERA「Loveit?」のカバー。10月31日にプレミア公開。", yt:"https://www.youtube.com/watch?v=cQbWSAbnduc" },
+        { date:d(2026,10,31), type:"cover", branch:"id", pri:false, title:"「Goblok Tenan」カバー MV公開", who:"AREA15（アイラニ・イオフィフティーン、アユンダ・リス、ムーナ・ホシノヴァ）", venue:"", note:"ゲーム『Troublemaker 2 Beyond Dream』OST「Goblok Tenan」のカバー（説明欄に #coversong）。10月31日にプレミア公開。", yt:"https://www.youtube.com/watch?v=c9yFK-ytqPg" },
         { date:d(2026,11,4),  type:"song", branch:"jp", pri:false, title:"9周年記念EP『CHECK！』リリース", who:"ときのそら", venue:"", note:"リード曲「スキ⇄スキ☆うろぼろす」は、じん作詞作曲。11/7のアリーナライブ直前の発売。" },
         { date:d(2026,11,7),  type:"live", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
         { date:d(2026,11,12), type:"live", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
@@ -517,6 +525,14 @@
           statusLabel = isUpcoming ? "開催予定" : "開催済み";
           statusClass = isUpcoming ? "t-upcoming" : "t-done";
         }
+        var linksHtml = "";
+        if (it.yt || it.stream || it.src) {
+          linksHtml = '<div class="links">';
+          if (it.yt) linksHtml += '<div class="link-row"><span class="link-label">YouTube MV</span><a class="link-url" href="' + it.yt + '" target="_blank" rel="noopener">' + it.yt + '</a></div>';
+          if (it.stream) linksHtml += '<div class="link-row"><span class="link-label stream">配信</span><a class="link-url" href="' + it.stream + '" target="_blank" rel="noopener">' + it.stream + '</a></div>';
+          if (it.src) linksHtml += '<div class="link-row"><span class="link-label source">' + (it.srcLabel || "出典") + '</span><a class="link-url" href="' + it.src + '" target="_blank" rel="noopener">' + it.src + '</a></div>';
+          linksHtml += '</div>';
+        }
         el.innerHTML =
           '<div class="when"><div class="md">' + (it.approx ? "2027" : (it.date.getMonth()+1) + "/" + it.date.getDate()) + '</div>' +
           '<div class="dow">' + (it.approx ? "日程は続報待ち" : it.date.getFullYear() + " ・ " + DOW[it.date.getDay()] + "曜") + '</div>' +
@@ -526,9 +542,9 @@
           '<div class="tags">' +
             '<span class="tag ' + statusClass + '">' + statusLabel + '</span>' +
             '<span class="tag t-' + it.branch + '">' + it.branch.toUpperCase() + '</span>' +
-            '<span class="tag t-type">' + (it.type === "live" ? "ライブ・イベント" : it.type === "cover" ? "カバー曲・リリース" : "新曲・リリース") + '</span>' +
+            '<span class="tag t-type">' + (it.type === "live" ? "ライブ・イベント" : it.type === "cover" ? "カバー曲リリース" : "新曲リリース") + '</span>' +
           '</div>' +
-          (it.src ? '<div class="src"><a href="' + it.src + '" target="_blank" rel="noopener">' + it.srcLabel + ' →</a></div>' : "") +
+          linksHtml +
           '</div>';
         return el;
       }
