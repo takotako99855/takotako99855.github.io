@@ -248,9 +248,9 @@
           <span><span class="sw done"></span><span id="legend-done">緑 ＝ 済み（発売・開催済み）</span></span>
         </div>
         <div class="legend" id="cat-legend" aria-label="ライブ・イベントの種別の凡例">
-          <span><span class="sw bday"></span>ピンク ＝ 誕生日記念ライブ</span>
-          <span><span class="sw anniv"></span>金 ＝ 周年記念ライブ</span>
-          <span><span class="sw evt"></span>紫 ＝ その他のライブ・イベント</span>
+          <span><span class="sw bday"></span>ピンク ＝ 誕生日記念（配信ライブ）</span>
+          <span><span class="sw anniv"></span>金 ＝ 周年記念（配信ライブ）</span>
+          <span><span class="sw evt"></span>紫 ＝ ライブ・イベント（記念ライブ以外の通常ライブ・イベント）</span>
         </div>
         <div class="feed" id="feed"></div>
         <div class="empty" id="empty">この条件に当てはまる告知は、今のところありません。</div>
@@ -287,8 +287,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月03日 08:27（JST）";
-      var NEXT_CHECK = "2026年11月03日 10:27（JST）";
+      var LAST_CHECKED = "2026年11月03日 08:45（JST）";
+      var NEXT_CHECK = "2026年11月03日 10:45（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -470,10 +470,11 @@
       /* ---------- feed data (verified 2026-10-30) ----------
          type: "live" = ライブ・イベント / "song" = 新曲リリース / "cover" = カバー曲リリース
          カバー曲は今後のチェックで type:"cover" としてここに追加してください。
-         type:"live" のカードには種別 cat を必ず付けてください（カードのタグと左ボーダーが種別色になります）：
-           cat:"birthday" = 誕生日記念ライブ（生誕祭・バースデーライブ等）
-           cat:"anniversary" = 周年記念ライブ（○周年記念・アニバーサリー等）
-           cat:"event" = その他のライブ・イベント（通常の現地ライブ・フェス・合同イベント等。迷ったらこれ）
+         type:"live" のカードには種別 cat を必ず付けてください（カードのタグと左ボーダーが種別色になります）。
+         判定はタイトルではなく「開催形式」優先です：
+           cat:"event" = 現地会場で開催され有料チケットがあるライブ・イベント。タイトルに「周年」「Anniversary」「生誕」が含まれていても現地・有料ならこちら（通常の現地ライブ・フェス・合同イベント含む。迷ったらこれ）
+           cat:"birthday" = 現地開催ではなく配信のみの誕生日記念ライブ（YouTube等の3Dバースデーライブ・生誕祭など）
+           cat:"anniversary" = 現地開催ではなく配信のみの周年記念ライブ
          リンクは note に埋め込まず、yt（YouTube MVのURL）／stream（配信URL）／src（出典URL）
          の各フィールドに入れてください。カード下部のリンク欄にURL全文が表示されます。 */
       var FEED = [
@@ -499,7 +500,7 @@
         { date:d(2026,11,2),  type:"song", branch:"jp", pri:false, title:"「せんしゅセンセーション」リリース", who:"夏色まつり", venue:"", note:"オリジナル新曲。Medansy（TRIFRONTIER）作詞・作曲・編曲。11月2日0時にサブスク配信開始、MVは公式YouTubeで公開済み。", yt:"https://www.youtube.com/watch?v=LCCe_mqLNH8" },
         { date:d(2026,11,3),  type:"song", branch:"jp", pri:false, title:"「Pong de Ding」リリース", who:"ロボ子さん", venue:"", note:"1stアルバム『Jewel Memory』収録曲。11月3日0時に配信開始。MVは未確認のため、公式YouTube配信音源リンクを掲載。", yt:"https://www.youtube.com/watch?v=KY-PByYGuck", src:"https://www.youtube.com/watch?v=TEPBDaYLqOE", srcLabel:"出典（ロボ子さんの配信ページの告知文）" },
         { date:d(2026,11,4),  type:"song", branch:"jp", pri:false, title:"9周年記念EP『CHECK！』リリース", who:"ときのそら", venue:"", note:"リード曲「スキ⇄スキ☆うろぼろす」は、じん作詞作曲。11/7のアリーナライブ直前の発売。" },
-        { date:d(2026,11,7),  type:"live", cat:"anniversary", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
+        { date:d(2026,11,7),  type:"live", cat:"event", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。現地・有料ライブのため種別は「ライブ・イベント」（開催形式優先の分類）。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
         { date:d(2026,11,7),  type:"live", cat:"birthday", branch:"id", pri:false, title:"3Dバースデーライブ「Dance The Night Away!」", who:"ベスティア・ゼータ", venue:"", note:"22:00 JST開演。ゲストに白上フブキ・大空スバル・角巻わため・一伊那尓栖・カエラ・コヴァルスキア・こぼ・かなえる・シオリ・ノヴェラ。新オリジナル曲と重大発表あり。", src:"https://www.youtube.com/watch?v=Gr9kcxof0X4", srcLabel:"出典" },
         { date:d(2026,11,12), type:"live", cat:"event", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
         { date:d(2026,11,14), type:"live", cat:"event", branch:"jp", pri:false, title:"ホロライブ わちゃわちゃ学園祭2026（〜11/15）", who:"ホロライブ（複数メンバー出演）", venue:"京王アリーナTOKYO", note:"14日17:00／15日16:30の2日間開催。" },
