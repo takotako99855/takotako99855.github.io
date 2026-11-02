@@ -136,6 +136,9 @@
       .legend .sw{width:14px;height:14px;border-radius:4px;flex:none;border:1.5px solid}
       .legend .sw.up{background:var(--cyan-soft);border-color:var(--cyan)}
       .legend .sw.done{background:var(--green-soft);border-color:var(--green)}
+      .legend .sw.bday{background:var(--pink-soft);border-color:var(--pink)}
+      .legend .sw.anniv{background:var(--gold-soft);border-color:var(--gold)}
+      .legend .sw.evt{background:var(--id-soft);border-color:var(--id)}
       .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
         padding:15px 17px;display:grid;grid-template-columns:86px 1fr;gap:6px 16px}
       .item .when{text-align:center;border-right:1px solid var(--line);padding-right:14px}
@@ -153,6 +156,13 @@
       .t-en{background:var(--pink-soft);color:var(--pink)}
       .t-id{background:var(--id-soft);color:var(--id)}
       .t-type{background:var(--surface2);color:var(--ink2)}
+      /* ライブ・イベントの種別タグ＆カード左アクセント（cat: birthday / anniversary / event） */
+      .t-cat-birthday{background:var(--pink-soft);color:var(--pink);border:1px solid var(--pink)}
+      .t-cat-anniversary{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold)}
+      .t-cat-event{background:var(--id-soft);color:var(--id);border:1px solid var(--id)}
+      .item.cat-birthday{border-left:5px solid var(--pink)}
+      .item.cat-anniversary{border-left:5px solid var(--gold)}
+      .item.cat-event{border-left:5px solid var(--id)}
       .t-pri{background:var(--gold-soft);color:var(--gold)}
       .item .src{font-size:12.5px;margin-top:7px}
       .item .links{display:flex;flex-direction:column;gap:5px;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
@@ -237,6 +247,11 @@
           <span><span class="sw up"></span><span id="legend-up">青 ＝ 予定（これから）</span></span>
           <span><span class="sw done"></span><span id="legend-done">緑 ＝ 済み（発売・開催済み）</span></span>
         </div>
+        <div class="legend" id="cat-legend" aria-label="ライブ・イベントの種別の凡例">
+          <span><span class="sw bday"></span>ピンク ＝ 誕生日記念ライブ</span>
+          <span><span class="sw anniv"></span>金 ＝ 周年記念ライブ</span>
+          <span><span class="sw evt"></span>紫 ＝ その他のライブ・イベント</span>
+        </div>
         <div class="feed" id="feed"></div>
         <div class="empty" id="empty">この条件に当てはまる告知は、今のところありません。</div>
       </section>
@@ -272,8 +287,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月03日 07:46（JST）";
-      var NEXT_CHECK = "2026年11月03日 09:46（JST）";
+      var LAST_CHECKED = "2026年11月03日 08:27（JST）";
+      var NEXT_CHECK = "2026年11月03日 10:27（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -455,6 +470,10 @@
       /* ---------- feed data (verified 2026-10-30) ----------
          type: "live" = ライブ・イベント / "song" = 新曲リリース / "cover" = カバー曲リリース
          カバー曲は今後のチェックで type:"cover" としてここに追加してください。
+         type:"live" のカードには種別 cat を必ず付けてください（カードのタグと左ボーダーが種別色になります）：
+           cat:"birthday" = 誕生日記念ライブ（生誕祭・バースデーライブ等）
+           cat:"anniversary" = 周年記念ライブ（○周年記念・アニバーサリー等）
+           cat:"event" = その他のライブ・イベント（通常の現地ライブ・フェス・合同イベント等。迷ったらこれ）
          リンクは note に埋め込まず、yt（YouTube MVのURL）／stream（配信URL）／src（出典URL）
          の各フィールドに入れてください。カード下部のリンク欄にURL全文が表示されます。 */
       var FEED = [
@@ -480,20 +499,20 @@
         { date:d(2026,11,2),  type:"song", branch:"jp", pri:false, title:"「せんしゅセンセーション」リリース", who:"夏色まつり", venue:"", note:"オリジナル新曲。Medansy（TRIFRONTIER）作詞・作曲・編曲。11月2日0時にサブスク配信開始、MVは公式YouTubeで公開済み。", yt:"https://www.youtube.com/watch?v=LCCe_mqLNH8" },
         { date:d(2026,11,3),  type:"song", branch:"jp", pri:false, title:"「Pong de Ding」リリース", who:"ロボ子さん", venue:"", note:"1stアルバム『Jewel Memory』収録曲。11月3日0時に配信開始。MVは未確認のため、公式YouTube配信音源リンクを掲載。", yt:"https://www.youtube.com/watch?v=KY-PByYGuck", src:"https://www.youtube.com/watch?v=TEPBDaYLqOE", srcLabel:"出典（ロボ子さんの配信ページの告知文）" },
         { date:d(2026,11,4),  type:"song", branch:"jp", pri:false, title:"9周年記念EP『CHECK！』リリース", who:"ときのそら", venue:"", note:"リード曲「スキ⇄スキ☆うろぼろす」は、じん作詞作曲。11/7のアリーナライブ直前の発売。" },
-        { date:d(2026,11,7),  type:"live", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
-        { date:d(2026,11,7),  type:"live", branch:"id", pri:false, title:"3Dバースデーライブ「Dance The Night Away!」", who:"ベスティア・ゼータ", venue:"", note:"22:00 JST開演。ゲストに白上フブキ・大空スバル・角巻わため・一伊那尓栖・カエラ・コヴァルスキア・こぼ・かなえる・シオリ・ノヴェラ。新オリジナル曲と重大発表あり。", src:"https://www.youtube.com/watch?v=Gr9kcxof0X4", srcLabel:"出典" },
-        { date:d(2026,11,12), type:"live", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
-        { date:d(2026,11,14), type:"live", branch:"jp", pri:false, title:"ホロライブ わちゃわちゃ学園祭2026（〜11/15）", who:"ホロライブ（複数メンバー出演）", venue:"京王アリーナTOKYO", note:"14日17:00／15日16:30の2日間開催。" },
-        { date:d(2026,11,27), type:"live", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
-        { date:d(2026,11,29), type:"live", branch:"jp", pri:false, title:"ReGLOSS AR LIVE「X-ReCHORD」", who:"ReGLOSS", venue:"ARオンラインライブ", note:"9/12に公式発表されたAR演出のオンラインライブ。" },
-        { date:d(2026,12,1),  type:"live", branch:"en", pri:true,  title:"ハコス・ベールズ 1stライブ「REGALIA」", who:"ハコス・ベールズ（ゲスト：常闇トワ）", venue:"東京（詳細は公式告知で確認）", note:"ベールズ初のソロライブに、トワ様がゲスト出演決定。" },
+        { date:d(2026,11,7),  type:"live", cat:"anniversary", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
+        { date:d(2026,11,7),  type:"live", cat:"birthday", branch:"id", pri:false, title:"3Dバースデーライブ「Dance The Night Away!」", who:"ベスティア・ゼータ", venue:"", note:"22:00 JST開演。ゲストに白上フブキ・大空スバル・角巻わため・一伊那尓栖・カエラ・コヴァルスキア・こぼ・かなえる・シオリ・ノヴェラ。新オリジナル曲と重大発表あり。", src:"https://www.youtube.com/watch?v=Gr9kcxof0X4", srcLabel:"出典" },
+        { date:d(2026,11,12), type:"live", cat:"event", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
+        { date:d(2026,11,14), type:"live", cat:"event", branch:"jp", pri:false, title:"ホロライブ わちゃわちゃ学園祭2026（〜11/15）", who:"ホロライブ（複数メンバー出演）", venue:"京王アリーナTOKYO", note:"14日17:00／15日16:30の2日間開催。" },
+        { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
+        { date:d(2026,11,29), type:"live", cat:"event", branch:"jp", pri:false, title:"ReGLOSS AR LIVE「X-ReCHORD」", who:"ReGLOSS", venue:"ARオンラインライブ", note:"9/12に公式発表されたAR演出のオンラインライブ。" },
+        { date:d(2026,12,1),  type:"live", cat:"event", branch:"en", pri:true,  title:"ハコス・ベールズ 1stライブ「REGALIA」", who:"ハコス・ベールズ（ゲスト：常闇トワ）", venue:"東京（詳細は公式告知で確認）", note:"ベールズ初のソロライブに、トワ様がゲスト出演決定。" },
         { date:d(2026,12,2),  type:"song", branch:"jp", pri:false, title:"2ndアルバム リリース", who:"博衣こより", venue:"", note:"12/22の1stライブと連動したリリース。タイトル等の詳細は公式告知で確認を。" },
-        { date:d(2026,12,5),  type:"live", branch:"jp", pri:false, title:"hololive RECORDS DJ NIGHT", who:"hololive RECORDS", venue:"", note:"FC会員は抽選で無料招待。" },
-        { date:d(2026,12,16), type:"live", branch:"jp", pri:false, title:"鷹嶺ルイ 1stライブ「REBELLION」", who:"鷹嶺ルイ", venue:"Kanadevia Hall", note:"EP発売もあわせて発表されています。holoXの先輩ライブ。" },
-        { date:d(2026,12,20), type:"live", branch:"jp", pri:false, title:"対バンライブ「星降る晩餐会」", who:"星街すいせい × tuki.", venue:"Kアリーナ横浜", note:"すいせいとtuki.の対バン。" },
-        { date:d(2026,12,22), type:"live", branch:"jp", pri:false, title:"博衣こより 1stライブ「Dream Spark」", who:"博衣こより", venue:"東京ガーデンシアター", note:"18:30開演。12/2の2ndアルバムとあわせて。" },
-        { date:d(2026,12,26), type:"live", branch:"jp", pri:false, title:"「COUNTDOWN JAPAN 26/27」出演", who:"星街すいせい", venue:"幕張メッセ", note:"年末フェスへの出演決定。チケット先行受付中。" },
-        { date:d(2026,12,31), type:"live", branch:"jp", pri:false, title:"hololive RECORDS MUSIC STAGE 2027（2027年開催・日程は続報待ち）", who:"hololive RECORDS", venue:"Kアリーナ横浜", note:"ホロライブ音楽レーベルのリアルライブとして10/20に情報解禁。開催は2027年で、正確な日程は公式の続報で確認を。このカードの日付は年末の仮置きです。", approx:true }
+        { date:d(2026,12,5),  type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS DJ NIGHT", who:"hololive RECORDS", venue:"", note:"FC会員は抽選で無料招待。" },
+        { date:d(2026,12,16), type:"live", cat:"event", branch:"jp", pri:false, title:"鷹嶺ルイ 1stライブ「REBELLION」", who:"鷹嶺ルイ", venue:"Kanadevia Hall", note:"EP発売もあわせて発表されています。holoXの先輩ライブ。" },
+        { date:d(2026,12,20), type:"live", cat:"event", branch:"jp", pri:false, title:"対バンライブ「星降る晩餐会」", who:"星街すいせい × tuki.", venue:"Kアリーナ横浜", note:"すいせいとtuki.の対バン。" },
+        { date:d(2026,12,22), type:"live", cat:"event", branch:"jp", pri:false, title:"博衣こより 1stライブ「Dream Spark」", who:"博衣こより", venue:"東京ガーデンシアター", note:"18:30開演。12/2の2ndアルバムとあわせて。" },
+        { date:d(2026,12,26), type:"live", cat:"event", branch:"jp", pri:false, title:"「COUNTDOWN JAPAN 26/27」出演", who:"星街すいせい", venue:"幕張メッセ", note:"年末フェスへの出演決定。チケット先行受付中。" },
+        { date:d(2026,12,31), type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS MUSIC STAGE 2027（2027年開催・日程は続報待ち）", who:"hololive RECORDS", venue:"Kアリーナ横浜", note:"ホロライブ音楽レーベルのリアルライブとして10/20に情報解禁。開催は2027年で、正確な日程は公式の続報で確認を。このカードの日付は年末の仮置きです。", approx:true }
       ];
 
       var feedEl = document.getElementById("feed");
@@ -527,6 +546,14 @@
         var isUpcoming = !isDoneItem(it);
         var el = document.createElement("article");
         el.className = "item " + (isUpcoming ? "is-upcoming" : "is-done");
+        /* ライブ・イベントは種別 cat で左ボーダーと種別タグを色分けする（未指定は event に寄せる） */
+        var catTag = "";
+        if (it.type === "live") {
+          var cat = it.cat || "event";
+          el.className += " cat-" + cat;
+          var catLabel = cat === "birthday" ? "誕生日記念" : cat === "anniversary" ? "周年記念" : "ライブ・イベント";
+          catTag = '<span class="tag t-cat-' + cat + '">' + catLabel + '</span>';
+        }
         var statusLabel, statusClass;
         if (it.type === "song" || it.type === "cover") {
           statusLabel = isUpcoming ? "発売予定" : "発売済み";
@@ -552,7 +579,7 @@
           '<div class="tags">' +
             '<span class="tag ' + statusClass + '">' + statusLabel + '</span>' +
             '<span class="tag t-' + it.branch + '">' + it.branch.toUpperCase() + '</span>' +
-            '<span class="tag t-type">' + (it.type === "live" ? "ライブ・イベント" : it.type === "cover" ? "カバー曲リリース" : "新曲リリース") + '</span>' +
+            (it.type === "live" ? catTag : '<span class="tag t-type">' + (it.type === "cover" ? "カバー曲リリース" : "新曲リリース") + '</span>') +
           '</div>' +
           linksHtml +
           '</div>';
@@ -584,6 +611,8 @@
       }
       function renderFeed(){
         feedEl.innerHTML = "";
+        /* 種別の凡例はライブ・イベントタブのときだけ表示する */
+        document.getElementById("cat-legend").style.display = currentTab === "live" ? "flex" : "none";
         var filtered = FEED.filter(matchesFilter);
         /* Part 1: upcoming — date ascending (closest first).
            Part 2: done — date descending (newest first).
