@@ -79,6 +79,19 @@
       .mrow .mdays{font-size:19px;font-weight:800;line-height:1.25;font-variant-numeric:tabular-nums}
       .mrow .mdays.soon{color:var(--pink)}
       .mrow .mday{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums}
+      .mrow .mmid{flex:1;min-width:0}
+      .mrow.has-live-birthday{border-left:5px solid var(--pink)}
+      .mrow.has-live-anniversary{border-left:5px solid var(--gold)}
+      .mlive{margin-top:7px;padding-top:7px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+      .mlive-head{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+      .mlive-tag{font-size:11px;font-weight:800;letter-spacing:.03em;padding:2px 9px;border-radius:999px;background:var(--pink-soft);color:var(--pink);border:1px solid var(--pink);white-space:nowrap}
+      .mlive-tag.anniv{background:var(--gold-soft);color:var(--gold);border-color:var(--gold)}
+      .mlive-title{font-size:13px;font-weight:700;line-height:1.4}
+      .mlive-url{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.5;word-break:break-all;overflow-wrap:anywhere}
+      @media (max-width:560px){
+        .mrow{align-items:flex-start}
+        .mrow .mdate{padding-top:2px}
+      }
 
       /* ---------- feed tabs ---------- */
       .tabs{display:flex;gap:5px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:5px;margin:16px 0 12px}
@@ -225,7 +238,7 @@
       <!-- ============ NEAREST MILESTONES ============ -->
       <section>
         <div class="shead"><h2>生誕・周年が近い順</h2><span class="note">JP・EN・ID全ブランチから近い順に20件</span></div>
-        <p class="sub">全メンバーの誕生日・デビュー記念日から、今日にいちばん近い20件を並べています。下のリストはスクロールで続きが見られます。記念日が近づくと生誕3Dライブや周年ライブの告知が出ることが多いので、目安にどうぞ。</p>
+        <p class="sub">全メンバーの誕生日・デビュー記念日から、今日にいちばん近い20件を並べています。下のリストはスクロールで続きが見られます。記念日が近づくと生誕3Dライブや周年ライブの告知が出ることが多いので、目安にどうぞ。対応する記念ライブがすでに発表されている行には「ライブ決定」タグと視聴URLを表示します。</p>
         <div class="mlist" id="mlist"></div>
       </section>
 
@@ -287,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月03日 15:44（JST）";
-      var NEXT_CHECK = "2026年11月03日 17:44（JST）";
+      var LAST_CHECKED = "2026年11月03日 17:05（JST）";
+      var NEXT_CHECK = "2026年11月03日 19:05（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -307,7 +320,14 @@
          Full roster rebuilt 2026-10-30 from the hololive-tsuushin anniversary calendar
          (JP incl. DEV_IS) plus the official talent profiles for EN / ID.
          Graduated / terminated members are excluded. FLOW GLOW, which debuted as a
-         unit on 2024-11-09, is kept as one unit entry. */
+         unit on 2024-11-09, is kept as one unit entry.
+         記念ライブのリンク：その記念日に対応する生誕記念／周年記念ライブがすでに
+         発表されている場合だけ、その行に liveKind（"birthday" | "anniversary"）、
+         liveTitle、liveDate、liveUrl を付けてください。対応付けは同じメンバーで、
+         誕生日行には誕生日記念ライブ、周年行には周年記念ライブのみ。開催日が
+         記念日の前後おおむね2か月以内にあるものに限り、対応するライブが無い行には
+         何も付けないでください（推測で付けない）。行内に「ライブ決定」タグと
+         URL全文のリンクが表示されます。 */
       var MILESTONES = [
         /* ----- JP birthdays ----- */
         { name:"兎田ぺこら", branch:"JP", kind:"誕生日", m:1, d:12 },
@@ -428,7 +448,7 @@
         { name:"カエラ・コヴァルスキア", branch:"ID", kind:"誕生日", m:8, d:30 },
         { name:"パヴォリア・レイネ", branch:"ID", kind:"誕生日", m:9, d:9 },
         { name:"クレイジー・オリー", branch:"ID", kind:"誕生日", m:10, d:13 },
-        { name:"ベスティア・ゼータ", branch:"ID", kind:"誕生日", m:11, d:7 },
+        { name:"ベスティア・ゼータ", branch:"ID", kind:"誕生日", m:11, d:7, liveKind:"birthday", liveTitle:"3Dバースデーライブ「Dance The Night Away!」", liveDate:"2026年11月7日 22:00 JST", liveUrl:"https://www.youtube.com/watch?v=Gr9kcxof0X4" },
         { name:"こぼ・かなえる", branch:"ID", kind:"誕生日", m:12, d:12 },
         /* ----- ID debut anniversaries ----- */
         { name:"ベスティア・ゼータ", branch:"ID", kind:"デビュー記念日", m:3, d:25 },
@@ -453,15 +473,27 @@
       document.getElementById("nextup-date").textContent =
         "その次は " + mrows[1].x.name + "（" + mrows[1].x.kind + "、あと" + mrows[1].days + "日）";
 
-      /* top 20 nearest milestones (list scrolls within the section) */
+      /* top 20 nearest milestones (list scrolls within the section)
+         行に liveUrl がある場合だけ「ライブ決定」タグ＋ライブ名＋URL全文リンクを
+         行内に追加表示する。無い行は従来通り何も付けない。 */
       var mlist = document.getElementById("mlist");
       mrows.slice(0,20).forEach(function(r, i){
         var row = document.createElement("div");
         row.className = "mrow";
+        var liveHtml = "";
+        if (r.x.liveUrl) {
+          var isAnnivLive = r.x.liveKind === "anniversary";
+          row.className += isAnnivLive ? " has-live-anniversary" : " has-live-birthday";
+          liveHtml =
+            '<div class="mlive"><div class="mlive-head">' +
+            '<span class="mlive-tag' + (isAnnivLive ? " anniv" : "") + '">ライブ決定</span>' +
+            '<span class="mlive-title">' + r.x.liveTitle + (r.x.liveDate ? "（" + r.x.liveDate + "）" : "") + '</span></div>' +
+            '<a class="mlive-url" href="' + r.x.liveUrl + '" target="_blank" rel="noopener">' + r.x.liveUrl + '</a></div>';
+        }
         row.innerHTML =
           '<div class="rank' + (i === 0 ? " first" : "") + '">' + (i + 1) + '</div>' +
-          '<div><div class="mname">' + r.x.name + '</div>' +
-          '<div class="msub">' + r.x.branch + " ・ " + r.x.kind + '</div></div>' +
+          '<div class="mmid"><div class="mname">' + r.x.name + '</div>' +
+          '<div class="msub">' + r.x.branch + " ・ " + r.x.kind + '</div>' + liveHtml + '</div>' +
           '<div class="mdate"><div class="mdays' + (r.days <= 30 ? " soon" : "") + '">あと' + r.days + '日</div>' +
           '<div class="mday">' + r.date.getFullYear() + "年" + fmt(r.date) + '</div></div>';
         mlist.appendChild(row);
