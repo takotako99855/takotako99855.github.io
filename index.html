@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月7日 09:43（JST）";
-      var NEXT_CHECK = "2026年11月7日 11:43（JST）";
+      var LAST_CHECKED = "2026年11月7日 10:51（JST）";
+      var NEXT_CHECK = "2026年11月7日 11:51（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -511,12 +511,20 @@
          の各フィールドに入れてください。カード下部のリンク欄にURL全文が表示されます。 */
       var FEED = [
         { date:d(2026,10,3),  type:"song", branch:"en", pri:true,  title:"「Sweet My Love」リリース", who:"ネリッサ・レイヴンクロフト", venue:"", note:"Adventの歌姫によるオリジナル曲。" },
+        { date:d(2026,10,7), type:"song", branch:"jp", pri:false, title:"「リスポーン!!」リリース", who:"角巻わため", venue:"", note:"TVアニメ『凶乱令嬢ニア・リストン 病弱令嬢に転生した神殺しの武人の華麗なる無双録』オープニングテーマ。初のソロアニメタイアップ曲。10月7日0時に先行配信開始、同日19時にアニメーションMV公開。12月23日にシングルCD発売予定。", yt:"https://www.youtube.com/watch?v=yhJ1yAqATmQ", src:"https://panora.tokyo/archives/159423", srcLabel:"出典記事" },
         { date:d(2026,10,8),  type:"song", branch:"jp", pri:true,  title:"「Rewrite the Answer」リリース", who:"常闇トワ", venue:"", note:"10月はトワ様の新曲が2曲。", yt:"https://www.youtube.com/watch?v=yOI1qMpfuRw" },
         { date:d(2026,10,11), type:"song", branch:"jp", pri:false, title:"「RISING 酸」リリース", who:"博衣こより", venue:"", note:"作詞・作曲・編曲はケンモチヒデフミ。12月のソロライブに向けた一曲。", yt:"https://www.youtube.com/watch?v=WOZTqdQ6bnE" },
+        { date:d(2026,10,12), type:"song", branch:"jp", pri:false, title:"「アイシカケ」リリース", who:"音乃瀬奏", venue:"", note:"3rdオリジナル曲。作詞・作曲・編曲はAkki。10月12日20時にMV公開、10月13日0時に配信開始。", yt:"https://www.youtube.com/watch?v=LjuKylF4udw", src:"https://v-media.jp/news/otonose-kanade-aishikake-20261013", srcLabel:"出典記事" },
+        { date:d(2026,10,12), type:"cover", branch:"jp", pri:false, title:"「ノンブレス・オブリージュ」カバー MV公開", who:"風真いろは", venue:"", note:"ピノキオピー「ノンブレス・オブリージュ」のカバー。", yt:"https://www.youtube.com/watch?v=NfZnchcKVw0", src:"https://vtuber-oshirase.net/archives/30794506.html", srcLabel:"出典記事" },
+        { date:d(2026,10,13), type:"song", branch:"jp", pri:false, title:"「PON-DERFUL!!!」MV公開", who:"さくらみこ", venue:"", note:"TAKU INOUE提供の新曲。2ndアルバム『Blooming Cinderella』（10月14日発売）収録曲。アニメーション制作はサンジゲン。", yt:"https://www.youtube.com/watch?v=i5GP5VRzB4E", src:"https://kai-you.net/article/96823", srcLabel:"出典記事" },
+        { date:d(2026,10,13), type:"song", branch:"jp", pri:false, title:"「プリプリプリンセス」MV公開", who:"姫森ルーナ", venue:"", note:"ナユタン星人提供のオリジナル曲。生誕祭ライブでの初披露を経てMV公開。", yt:"https://www.youtube.com/watch?v=wYpu_zz1P3c", src:"https://vtuber-oshirase.net/archives/30799257.html", srcLabel:"出典記事" },
         { date:d(2026,10,14), type:"song", branch:"jp", pri:false, title:"2ndアルバム『Blooming Cinderella』リリース", who:"さくらみこ", venue:"", note:"10/29にはKアリーナ横浜で2ndライブ「Blooming Parade!!」を開催済み。" },
+        { date:d(2026,10,16), type:"cover", branch:"jp", pri:false, title:"「革命道中」カバー MV公開", who:"鷹嶺ルイ×澤村光彩", venue:"", note:"アイナ・ジ・エンド「革命道中」のカバー。澤村光彩とのコラボ歌唱。", yt:"https://www.youtube.com/watch?v=ZNlovMQZ83g", src:"https://vtuber-oshirase.net/archives/30815525.html", srcLabel:"出典記事" },
         { date:d(2026,10,18), type:"song", branch:"jp", pri:true,  title:"「Shallow Shadow」リリース", who:"常闇トワ", venue:"", note:"公式ゲーム『hololive Dreams』書き下ろしのソロ新曲。", yt:"https://www.youtube.com/watch?v=ylpBsZ0jHZc" },
         { date:d(2026,10,18), type:"song", branch:"en", pri:false, title:"「La Mascarade」MV公開", who:"hololive English -Promise-", venue:"", note:"IRyS、オーロ・クロニー、ハコス・ベールズのユニットオリジナル曲。", yt:"https://www.youtube.com/watch?v=FLuj-J_8OrQ" },
+        { date:d(2026,10,19), type:"cover", branch:"jp", pri:false, title:"「ファイアダンス」カバー MV公開", who:"ときのそら・町田ちま・夢追翔・春希", venue:"", note:"ホロライブ×にじさんじ×歌い手によるコラボカバー。", yt:"https://www.youtube.com/watch?v=kZlHh0uCdtg", src:"https://matomeru.site/items/post-1342006", srcLabel:"出典記事" },
         { date:d(2026,10,20), type:"song", branch:"id", pri:false, title:"「Forge My Soul」リリース", who:"カエラ・コヴァルスキア", venue:"", note:"『hololive Dreams』書き下ろしソロ新曲シリーズのID組。", yt:"https://www.youtube.com/watch?v=8On-I5qQeLw" },
+        { date:d(2026,10,21), type:"cover", branch:"jp", pri:false, title:"「チェリーポップ」カバー MV公開", who:"尾丸ポルカ・姫森ルーナ", venue:"", note:"「ポルーナ」によるカバー。", yt:"https://www.youtube.com/watch?v=vShW-eC3M4I", src:"https://vtuber-oshirase.net/archives/30838919.html", srcLabel:"出典記事" },
         { date:d(2026,10,21), type:"song", branch:"jp", pri:true,  title:"「BLOCK YOU」＆アルバム『ラプ様アーティスト化計画』リリース", who:"ラプラス・ダークネス", venue:"", note:"「BLOCK YOU」はjon-YAKITORY作詞作曲。ラプ様の音楽活動が本格化。" },
         { date:d(2026,10,22), type:"song", branch:"jp", pri:false, title:"「アマリリス」リリース", who:"獅白ぼたん", venue:"", note:"『hololive Dreams』書き下ろしソロ新曲。", yt:"https://www.youtube.com/watch?v=BtpR74RBESc" },
         { date:d(2026,10,22), type:"song", branch:"id", pri:false, title:"「S.O.R.e : Song of Reality」リリース", who:"アユンダ・リス", venue:"", note:"IDからのオリジナル曲リリース。" },
@@ -540,7 +548,7 @@
         { date:d(2026,11,4),  type:"song", branch:"jp", pri:false, title:"「マルゴトミライ」リリース", who:"ときのそら", venue:"", note:"9周年記念EP『CHECK！』収録曲。EP発売日の11月4日にMV公開。", yt:"https://www.youtube.com/watch?v=GKUUf0fs_So", src:"https://skream.jp/news/2026/11/tokinosora_check.php", srcLabel:"出典記事" },
         { date:d(2026,11,5),  type:"song", branch:"jp", pri:false, title:"「ハイパーチャッチャカチャージ」MV公開", who:"ときのそら", venue:"", note:"9周年記念EP『CHECK！』収録曲。MVは11月5日20時にプレミア公開（EP自体は11月4日に発売済み）。", yt:"https://www.youtube.com/watch?v=eaPEREHrA5w", src:"https://skream.jp/news/2026/11/tokinosora_check.php", srcLabel:"出典記事" },
         { date:d(2026,11,5),  type:"song", branch:"jp", pri:false, title:"「神ツモ☆ドラドラ伝説」EPリリース", who:"アキ・ローゼンタール、白上フブキ、宝鐘マリン、一条莉々華", venue:"", note:"4人によるEP（全6曲）。2026年11月5日に配信開始。hololive RECORDSの公式Instagramでも同日告知あり。", src:"https://music.apple.com/jp/album/kami-tsumo-dora-dora-densetsu-ep/6830512937", srcLabel:"出典" },
-        { date:d(2026,11,7),  type:"song", branch:"id", pri:false, title:"「オーガンジー」MVプレミア公開", who:"アーニャ・メルフィッサ", venue:"", note:"アーニャ・メルフィッサの4thオリジナル曲。MVは11月7日にプレミア公開。本人の公式Instagramで11月6日に告知あり。MVのURLは公開後に差し替え。", yt:"https://www.youtube.com/watch?v=8sH9HQXbpf0", src:"https://www.instagram.com/p/DfZ4DRHp1IT/", srcLabel:"出典（アーニャ・メルフィッサ公式Instagram）" },
+        { date:d(2026,11,7),  type:"song", branch:"id", pri:false, title:"「オーガンジー」MVプレミア公開", who:"アーニャ・メルフィッサ", venue:"", note:"アーニャ・メルフィッサの4thオリジナル曲。MVは2026年11月7日21:00 JSTにプレミア公開。本人の公式Instagramで11月6日に告知あり。", yt:"https://www.youtube.com/watch?v=nxx0SVGp5yQ", src:"https://www.instagram.com/p/DfZ4DRHp1IT/", srcLabel:"出典（アーニャ・メルフィッサ公式Instagram）" },
         { date:d(2026,11,7),  type:"live", cat:"event", branch:"jp", pri:false, title:"9th Anniversary Party「Everyday of Light」", who:"ときのそら", venue:"ぴあアリーナMM（横浜）", note:"デビュー9周年ワンマン。Day＜Sunlight Stage＞／Night＜Moonlight Stage＞の昼夜2部制、生バンド編成で自身初のアリーナ公演。現地・有料ライブのため種別は「ライブ・イベント」（開催形式優先の分類）。", src:"https://hololive.hololivepro.com/events/everyday-of-light/", srcLabel:"公式イベントページ" },
         { date:d(2026,11,7),  type:"live", cat:"birthday", branch:"id", pri:false, title:"3Dバースデーライブ「Dance The Night Away!」", who:"ベスティア・ゼータ", venue:"", note:"22:00 JST開演。ゲストに白上フブキ・大空スバル・角巻わため・一伊那尓栖・カエラ・コヴァルスキア・こぼ・かなえる・シオリ・ノヴェラ。新オリジナル曲と重大発表あり。", src:"https://www.youtube.com/watch?v=Gr9kcxof0X4", srcLabel:"出典" },
         { date:d(2026,11,12), type:"live", cat:"event", branch:"jp", pri:false, title:"福岡公演＋ライブビューイング", who:"星街すいせい", venue:"福岡公演／全国51館・海外で生中継", note:"ライブビューイング開催が決定し、重大告知も予告されています。" },
