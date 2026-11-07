@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月7日 19:47（JST）";
-      var NEXT_CHECK = "2026年11月7日 20:47（JST）";
+      var LAST_CHECKED = "2026年11月7日 20:48（JST）";
+      var NEXT_CHECK = "2026年11月7日 21:48（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -561,7 +561,7 @@
         { date:d(2026,12,5),  type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS DJ NIGHT", who:"hololive RECORDS", venue:"", note:"FC会員は抽選で無料招待。" },
         { date:d(2026,12,16), type:"live", cat:"event", branch:"jp", pri:false, title:"鷹嶺ルイ 1stライブ「REBELLION」", who:"鷹嶺ルイ", venue:"Kanadevia Hall", note:"EP発売もあわせて発表されています。holoXの先輩ライブ。" },
         { date:d(2026,12,20), type:"live", cat:"event", branch:"jp", pri:false, title:"対バンライブ「星降る晩餐会」", who:"星街すいせい × tuki.", venue:"Kアリーナ横浜", note:"すいせいとtuki.の対バン。" },
-        { date:d(2026,12,22), type:"live", cat:"event", branch:"jp", pri:false, title:"博衣こより 1stライブ「Dream Spark」", who:"博衣こより", venue:"東京ガーデンシアター", note:"18:30開演。12/2の2ndアルバムとあわせて。" },
+        { date:d(2026,12,22), type:"live", cat:"event", branch:"jp", pri:false, title:"Hakui Koyori 1st Live “Dream Spark”", who:"博衣こより", venue:"東京ガーデンシアター", note:"開場17:30／開演18:30。博衣こより初のソロライブ。12/2の2ndアルバムとあわせて。", site:"https://dream-spark.hololivepro.com/", src:"https://prtimes.jp/main/html/rd/p/000001276.000030268.html", srcLabel:"出典（PR TIMES）" },
         { date:d(2026,12,26), type:"live", cat:"event", branch:"jp", pri:false, title:"「COUNTDOWN JAPAN 26/27」出演", who:"星街すいせい", venue:"幕張メッセ", note:"年末フェスへの出演決定。チケット先行受付中。" },
         { date:d(2026,12,31), type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS MUSIC STAGE 2027（2027年開催・日程は続報待ち）", who:"hololive RECORDS", venue:"Kアリーナ横浜", note:"ホロライブ音楽レーベルのリアルライブとして10/20に情報解禁。開催は2027年で、正確な日程は公式の続報で確認を。このカードの日付は年末の仮置きです。", approx:true }
       ];
@@ -614,10 +614,11 @@
           statusClass = isUpcoming ? "t-upcoming" : "t-done";
         }
         var linksHtml = "";
-        if (it.yt || it.stream || it.src) {
+        if (it.yt || it.stream || it.src || it.site) {
           linksHtml = '<div class="links">';
           if (it.yt) linksHtml += '<div class="link-row"><span class="link-label">YouTube MV</span><a class="link-url" href="' + it.yt + '" target="_blank" rel="noopener">' + it.yt + '</a></div>';
           if (it.stream) linksHtml += '<div class="link-row"><span class="link-label stream">配信</span><a class="link-url" href="' + it.stream + '" target="_blank" rel="noopener">' + it.stream + '</a></div>';
+          if (it.site) linksHtml += '<div class="link-row"><span class="link-label">' + (it.siteLabel || "特設サイト") + '</span><a class="link-url" href="' + it.site + '" target="_blank" rel="noopener">' + it.site + '</a></div>';
           if (it.src) linksHtml += '<div class="link-row"><span class="link-label source">' + (it.srcLabel || "出典") + '</span><a class="link-url" href="' + it.src + '" target="_blank" rel="noopener">' + it.src + '</a></div>';
           linksHtml += '</div>';
         }
