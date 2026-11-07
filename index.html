@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月7日 20:48（JST）";
-      var NEXT_CHECK = "2026年11月7日 21:48（JST）";
+      var LAST_CHECKED = "2026年11月7日 21:52（JST）";
+      var NEXT_CHECK = "2026年11月7日 22:52（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -563,7 +563,8 @@
         { date:d(2026,12,20), type:"live", cat:"event", branch:"jp", pri:false, title:"対バンライブ「星降る晩餐会」", who:"星街すいせい × tuki.", venue:"Kアリーナ横浜", note:"すいせいとtuki.の対バン。" },
         { date:d(2026,12,22), type:"live", cat:"event", branch:"jp", pri:false, title:"Hakui Koyori 1st Live “Dream Spark”", who:"博衣こより", venue:"東京ガーデンシアター", note:"開場17:30／開演18:30。博衣こより初のソロライブ。12/2の2ndアルバムとあわせて。", site:"https://dream-spark.hololivepro.com/", src:"https://prtimes.jp/main/html/rd/p/000001276.000030268.html", srcLabel:"出典（PR TIMES）" },
         { date:d(2026,12,26), type:"live", cat:"event", branch:"jp", pri:false, title:"「COUNTDOWN JAPAN 26/27」出演", who:"星街すいせい", venue:"幕張メッセ", note:"年末フェスへの出演決定。チケット先行受付中。" },
-        { date:d(2026,12,31), type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS MUSIC STAGE 2027（2027年開催・日程は続報待ち）", who:"hololive RECORDS", venue:"Kアリーナ横浜", note:"ホロライブ音楽レーベルのリアルライブとして10/20に情報解禁。開催は2027年で、正確な日程は公式の続報で確認を。このカードの日付は年末の仮置きです。", approx:true }
+        { date:d(2026,12,31), type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS MUSIC STAGE 2027（2027年開催・日程は続報待ち）", who:"hololive RECORDS", venue:"Kアリーナ横浜", note:"ホロライブ音楽レーベルのリアルライブとして10/20に情報解禁。開催は2027年で、正確な日程は公式の続報で確認を。このカードの日付は年末の仮置きです。", approx:true },
+        { date:d(2027,12,17), type:"live", cat:"event", branch:"jp", pri:false, title:"10th Anniversary Party", who:"ときのそら", venue:"横浜アリーナ", note:"2027年12月17日（金）・18日（土）の2DAYS開催。2026年11月7日、9周年公演「Everyday of Light」夜公演のエンディングでサプライズ発表。チケット詳細は2027年春発表予定。現地・有料ライブのため種別は「ライブ・イベント」（開催形式優先の分類）。", site:"https://tokinosora-live.com/", src:"https://panora.tokyo/archives/162374", srcLabel:"出典記事（PANORA）" }
       ];
 
       var feedEl = document.getElementById("feed");
