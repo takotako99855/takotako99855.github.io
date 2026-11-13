@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月13日 18:48（JST）";
-      var NEXT_CHECK = "2026年11月13日 19:48（JST）";
+      var LAST_CHECKED = "2026年11月13日 19:49（JST）";
+      var NEXT_CHECK = "2026年11月13日 20:49（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -368,7 +368,7 @@
         { name:"戌神ころね", branch:"JP", kind:"誕生日", m:10, d:1 },
         { name:"白上フブキ", branch:"JP", kind:"誕生日", m:10, d:5 },
         { name:"姫森ルーナ", branch:"JP", kind:"誕生日", m:10, d:10 },
-        { name:"雪花ラミィ", branch:"JP", kind:"誕生日", m:11, d:15 },
+        { name:"雪花ラミィ", branch:"JP", kind:"誕生日", m:11, d:15, liveKind:"birthday", liveTitle:"生誕前夜祭！！誕生日カウントダウン！！【晩酌】", liveDate:"2026年11月14日 23:30 JST", liveUrl:"https://www.youtube.com/live/Mj_V7G27VvA" },
         { name:"白銀ノエル", branch:"JP", kind:"誕生日", m:11, d:24 },
         { name:"百鬼あやめ", branch:"JP", kind:"誕生日", m:12, d:13 },
         /* ----- JP debut anniversaries ----- */
@@ -560,6 +560,7 @@
         { date:d(2026,11,14), type:"song", branch:"jp", pri:false, title:"ホロドリ「Whistling Wind Walk」ソロイベント発表（5名の書き下ろしソロ曲＋MV）", who:"ロボ子さん、兎田ぺこら、IRyS、桃鈴ねね、パヴォリア・レイネ", venue:"", note:"2026年11月13日に公式発表されたホロドリのソロイベント。11月14日20:00から2日ごとに各タレントのチャプターが開始し、書き下ろしソロ曲とMVを発表予定。ロボ子さん「slight fever」（11/14）、兎田ぺこら「PEKORISER」（11/16）、IRyS「Burning hope」（11/18）、桃鈴ねね「Dear You, A Love Song Just for You!」（11/20）、パヴォリア・レイネ「Halulu」（11/22）。各曲のMV公開時刻は未発表。", src:"https://dreams.wf-calc.net/wiki/game-updates?lang=en", srcLabel:"出典（公式告知まとめ）" },
         { date:d(2026,11,14), type:"live", cat:"birthday", branch:"en", pri:false, title:"3Dバースデーライブ「EVERGREEN REPRISE」", who:"セシリア・イマーグリーン", venue:"", note:"22:00 JST開演（2pm CET / 8am EST）。本人初の3Dバースデーライブ。ゲストは後日発表予定。", stream:"https://www.youtube.com/watch?v=RFKeljZW5s0", src:"https://x.com/ceciliaimgreen/status/2119598390741012863", srcLabel:"出典ポスト" },
         { date:d(2026,11,14), type:"live", cat:"event", branch:"jp", pri:false, title:"ホロライブ わちゃわちゃ学園祭2026（〜11/15）", who:"ホロライブ（複数メンバー出演）", venue:"京王アリーナTOKYO", note:"14日17:00／15日16:30の2日間開催。", src:"https://oshikatsu.ldblog.jp/archives/17826171.html", srcLabel:"出典" },
+        { date:d(2026,11,14), type:"live", cat:"birthday", branch:"jp", pri:false, title:"生誕前夜祭！！誕生日カウントダウン！！【晩酌】", who:"雪花ラミィ", venue:"", note:"23:30 JST開演。誕生日（11月15日）の前夜祭として行われるカウントダウン配信（晩酌）。", stream:"https://www.youtube.com/live/Mj_V7G27VvA", src:"https://x.com/yukihanalamy/status/2121184376751005985", srcLabel:"出典ポスト" },
         { date:d(2026,11,15), type:"live", cat:"event", branch:"jp", pri:false, title:"アニマーシブライブ『竜とそばかすの姫 - PROJECT LAYRA-』最終公演", who:"AZKi", venue:"", note:"11:30〜／18:30〜の2公演。映画「竜とそばかすの姫」の5年後の仮想世界を描く没入型音楽ライブショー。最終公演は配信チケット4,400円（税込）〜で、千秋楽生配信＋アーカイブ配信あり。", site:"https://spwn.jp/events/evt_p5qgypyTWaUd8MEYt6yd", siteLabel:"配信チケット", src:"https://x.com/HIROchan_Utopia/status/2120803798948229176", srcLabel:"出典ポスト" },
         { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
         { date:d(2026,11,29), type:"live", cat:"event", branch:"jp", pri:false, title:"ReGLOSS AR LIVE「X-ReCHORD」", who:"ReGLOSS", venue:"ARオンラインライブ", note:"9/12に公式発表されたAR演出のオンラインライブ。" },
