@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月17日 8時57分（JST）";
-      var NEXT_CHECK = "2026年11月17日 9時57分（JST）";
+      var LAST_CHECKED = "2026年11月17日 10時56分（JST）";
+      var NEXT_CHECK = "2026年11月17日 11時56分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -529,7 +529,7 @@
         { date:d(2026,10,21), type:"song", branch:"jp", pri:true,  title:"「BLOCK YOU」＆アルバム『ラプ様アーティスト化計画』リリース", who:"ラプラス・ダークネス", venue:"", note:"「BLOCK YOU」はjon-YAKITORY作詞作曲。ラプ様の音楽活動が本格化。" },
         { date:d(2026,10,22), type:"song", branch:"jp", pri:false, title:"「アマリリス」リリース", who:"獅白ぼたん", venue:"", note:"『hololive Dreams』書き下ろしソロ新曲。", yt:"https://www.youtube.com/watch?v=BtpR74RBESc" },
         { date:d(2026,10,22), type:"song", branch:"id", pri:false, title:"「S.O.R.e : Song of Reality」リリース", who:"アユンダ・リス", venue:"", note:"IDからのオリジナル曲リリース。" },
-        { date:d(2026,10,24), type:"song", branch:"en", pri:true,  title:"「CORE//UNBREAKABLE」リリース", who:"古石ビジュー", venue:"", note:"『hololive Dreams』書き下ろし。ビジューの新境地となる一曲。", yt:"https://www.youtube.com/watch?v=7CM4ZbyrafQ" },
+        { date:d(2026,10,24), type:"song", branch:"en", pri:true,  title:"「CORE//UNBREAKABLE」リリース", who:"古石ビジュー", venue:"", note:"『hololive Dreams』書き下ろし。ビジューの新境地となる一曲。楽曲のストリーミング配信は2026年11月17日に開始。", yt:"https://www.youtube.com/watch?v=7CM4ZbyrafQ", stream:"https://cover.lnk.to/fzquHv" },
         { date:d(2026,10,24), type:"song", branch:"jp", pri:false, title:"「ゾンビゾンビゾンビ」リリース", who:"星街すいせい", venue:"", note:"なとり提供曲。同日に歌舞伎町でハロウィン路上ライブも開催。", yt:"https://www.youtube.com/watch?v=jSNmQt7QNBc" },
         { date:d(2026,10,28), type:"song", branch:"en", pri:true,  title:"「怪宴スペクタクル」リリース", who:"hololive IDOL PROJECT（夏色まつり、Vestia Zeta、ネリッサ・レイヴンクロフト、儒烏風亭らでん、轟はじめ）", venue:"", note:"JP・ID・EN横断ユニット曲。ネリッサ参加。", yt:"https://www.youtube.com/watch?v=R-ChvjRIKdk" },
         { date:d(2026,10,29), type:"song", branch:"jp", pri:false, title:"「現世アリス」リリース", who:"ロボ子さん", venue:"", note:"新オリジナル曲。MVはロボ子さん公式チャンネルで公開。", yt:"https://www.youtube.com/watch?v=_buc53b7gs8", src:"https://www.youtube.com/watch?v=_buc53b7gs8", srcLabel:"出典（ロボ子さん公式チャンネル）" },
@@ -574,6 +574,7 @@
         { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"en", pri:true, title:"hololive Meet SUPER KARAOKE PARTY（DreamHack Stockholm 2026）", who:"森カリオペ、ネリッサ・レイヴンクロフト、エリザベス・ローズ・ブラッドフレイム", venue:"Victoriahallen（Victoria Hall）、Stockholmsmässan（ストックホルム）", note:"DreamHack Stockholm 2026でのhololive Meetライブステージ。2026年11月28日（土）13:00 CET（ストックホルム時間）開催。", src:"https://holostars.hololivepro.com/en/news/20261019-01-43/", srcLabel:"公式発表ページ" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"jp", pri:false, title:"11/28 イベント開催（重大発表あり・開始時刻未定）", who:"虎金妃笑虎", venue:"", note:"11月9日の2周年記念歌枠で発表された、11月28日開催のイベント。重大発表あり。開始時刻は未定で、決まり次第告知される。", src:"https://daily-superchat.inkwire.workers.dev/story/WYg7Qpux_mA/", srcLabel:"出典" },
+        { date:d(2026,11,29), type:"song", branch:"en", pri:true, title:"「My Horizon」フルアニメMV（TVサイズ）", who:"ハコス・ベールズ（with ネリッサ・レイヴンクロフト）", venue:"", note:"楽曲自体はハコス・ベールズ 2ndアルバム「Mirror Mirror」（2026-11-02発売）収録曲で、今回の新着はフルアニメMVのプレミア公開の告知。2026-11-15のネリッサ・レイヴンクロフトとのオフコラボカラオケ配信で発表された。2026年11月29日0:00 JSTにプレミア公開予定。", src:"https://daily-superchat.inkwire.workers.dev/story/VqkiTQbWk0c/", srcLabel:"出典" },
         { date:d(2026,11,29), type:"live", cat:"event", branch:"jp", pri:false, title:"ReGLOSS AR LIVE「X-ReCHORD」", who:"ReGLOSS", venue:"ARオンラインライブ", note:"9/12に公式発表されたAR演出のオンラインライブ。" },
         { date:d(2026,12,1),  type:"live", cat:"event", branch:"en", pri:true,  title:"ハコス・ベールズ 1stライブ「REGALIA」", who:"ハコス・ベールズ（ゲスト：常闇トワ）", venue:"東京（詳細は公式告知で確認）", note:"ベールズ初のソロライブに、トワ様がゲスト出演決定。" },
         { date:d(2026,12,2),  type:"song", branch:"jp", pri:false, title:"2ndアルバム『Chemical Spark』リリース", who:"博衣こより", venue:"", note:"理系女子（リケジョ）がコンセプトの初の全国流通アルバム。書き下ろし新曲『ピンクになっちゃえ』（jon-YAKITORY）ほか、『爆ラブ＋ケミストリー』『管制塔より』『NaN GAME』などを収録。12/22の1stライブ『Dream Spark』と連動したリリース。公式クロスフェード動画も公開中。", yt:"https://www.youtube.com/watch?v=hXHc-Fg-pak", src:"https://www.mapion.co.jp/news/release/000001268.000030268-all/", srcLabel:"出典（PR TIMES）" },
