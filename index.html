@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月17日 12時55分（JST）";
-      var NEXT_CHECK = "2026年11月17日 13時55分（JST）";
+      var LAST_CHECKED = "2026年11月17日 13時50分（JST）";
+      var NEXT_CHECK = "2026年11月17日 14時50分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -508,6 +508,7 @@
            cat:"birthday" = 現地開催ではなく配信のみの誕生日記念ライブ（YouTube等の3Dバースデーライブ・生誕祭など）
            cat:"anniversary" = 現地開催ではなく配信のみの周年記念ライブ
          リンクは note に埋め込まず、yt（YouTube MVのURL）／stream（配信URL）／src（出典URL）
+         ／site・site2（公式ページ等のURL。ラベルは siteLabel／site2Label で指定）
          の各フィールドに入れてください。カード下部のリンク欄にURL全文が表示されます。 */
       var FEED = [
         { date:d(2026,10,3),  type:"song", branch:"en", pri:true,  title:"「Sweet My Love」リリース", who:"ネリッサ・レイヴンクロフト", venue:"", note:"Adventの歌姫によるオリジナル曲。" },
@@ -577,6 +578,7 @@
         { date:d(2026,11,29), type:"song", branch:"en", pri:true, title:"「My Horizon」フルアニメMV（TVサイズ）", who:"ハコス・ベールズ（with ネリッサ・レイヴンクロフト）", venue:"", note:"楽曲自体はハコス・ベールズ 2ndアルバム「Mirror Mirror」（2026-11-02発売）収録曲で、今回の新着はフルアニメMVのプレミア公開の告知。2026-11-15のネリッサ・レイヴンクロフトとのオフコラボカラオケ配信で発表された。2026年11月29日0:00 JSTにプレミア公開予定。", src:"https://daily-superchat.inkwire.workers.dev/story/VqkiTQbWk0c/", srcLabel:"出典" },
         { date:d(2026,11,29), type:"live", cat:"event", branch:"jp", pri:false, title:"ReGLOSS AR LIVE「X-ReCHORD」", who:"ReGLOSS", venue:"ARオンラインライブ", note:"9/12に公式発表されたAR演出のオンラインライブ。" },
         { date:d(2026,12,1),  type:"live", cat:"event", branch:"en", pri:true,  title:"ハコス・ベールズ 1stライブ「REGALIA」", who:"ハコス・ベールズ（ゲスト：常闇トワ）", venue:"東京（詳細は公式告知で確認）", note:"ベールズ初のソロライブに、トワ様がゲスト出演決定。" },
+        { date:d(2026,12,1),  type:"live", cat:"event", branch:"en", pri:false, title:"ハコス・ベールズ 1st Concert「REGALIA」ライブビューイング（映画館生中継）", who:"ハコス・ベールズ", venue:"", note:"12/1 18:30 JST、台湾・韓国・香港・マレーシア・タイ・オーストラリアの映画館で生中継するライブビューイング。Kanadevia Hallでの本公演（既存カードあり）とは別枠の映画館上映。", site:"https://regalia.hololivepro.com/news/05/", siteLabel:"詳細", site2:"https://www.liveviewing.com/hakos-baelz-1st-concert-regalia-live-viewing-in-cinemas", site2Label:"チケット", src:"https://x.com/hololive_En/status/2122540287113281914", srcLabel:"出典ポスト" },
         { date:d(2026,12,2),  type:"song", branch:"jp", pri:false, title:"2ndアルバム『Chemical Spark』リリース", who:"博衣こより", venue:"", note:"理系女子（リケジョ）がコンセプトの初の全国流通アルバム。書き下ろし新曲『ピンクになっちゃえ』（jon-YAKITORY）ほか、『爆ラブ＋ケミストリー』『管制塔より』『NaN GAME』などを収録。12/22の1stライブ『Dream Spark』と連動したリリース。公式クロスフェード動画も公開中。", yt:"https://www.youtube.com/watch?v=hXHc-Fg-pak", src:"https://www.mapion.co.jp/news/release/000001268.000030268-all/", srcLabel:"出典（PR TIMES）" },
         { date:d(2026,12,5),  type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS DJ NIGHT", who:"hololive RECORDS", venue:"", note:"FC会員は抽選で無料招待。" },
         { date:d(2026,12,9), type:"song", branch:"jp", pri:false, title:"「だって僕は」メジャーデビューシングル", who:"星街すいせい", venue:"", note:"ソニー・ミュージックのレーベル「Echoes」からのメジャーデビューシングル。2026年11月12日のアリーナツアー「Once Upon a Stellar」福岡公演で発表。『Stellar Stellar』のアンサーソング（TAKU INOUE）。MVは未公開。完全生産限定盤CD（2CD）も同日発売。", src:"https://skream.jp/news/2026/11/hoshimachisuisei_echoes.php", srcLabel:"出典記事" },
@@ -640,11 +642,12 @@
           statusClass = isUpcoming ? "t-upcoming" : "t-done";
         }
         var linksHtml = "";
-        if (it.yt || it.stream || it.src || it.site) {
+        if (it.yt || it.stream || it.src || it.site || it.site2) {
           linksHtml = '<div class="links">';
           if (it.yt) linksHtml += '<div class="link-row"><span class="link-label">YouTube MV</span><a class="link-url" href="' + it.yt + '" target="_blank" rel="noopener">' + it.yt + '</a></div>';
           if (it.stream) linksHtml += '<div class="link-row"><span class="link-label stream">配信</span><a class="link-url" href="' + it.stream + '" target="_blank" rel="noopener">' + it.stream + '</a></div>';
           if (it.site) linksHtml += '<div class="link-row"><span class="link-label">' + (it.siteLabel || "特設サイト") + '</span><a class="link-url" href="' + it.site + '" target="_blank" rel="noopener">' + it.site + '</a></div>';
+          if (it.site2) linksHtml += '<div class="link-row"><span class="link-label">' + (it.site2Label || "リンク") + '</span><a class="link-url" href="' + it.site2 + '" target="_blank" rel="noopener">' + it.site2 + '</a></div>';
           if (it.src) linksHtml += '<div class="link-row"><span class="link-label source">' + (it.srcLabel || "出典") + '</span><a class="link-url" href="' + it.src + '" target="_blank" rel="noopener">' + it.src + '</a></div>';
           linksHtml += '</div>';
         }
