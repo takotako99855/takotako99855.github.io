@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月20日 8時57分（JST）";
-      var NEXT_CHECK = "2026年11月20日 9時57分（JST）";
+      var LAST_CHECKED = "2026年11月20日 10時56分（JST）";
+      var NEXT_CHECK = "2026年11月20日 11時56分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -423,7 +423,7 @@
         { name:"小鳥遊キアラ", branch:"EN", kind:"誕生日", m:7, d:6 },
         { name:"ジジ・ムリン", branch:"EN", kind:"誕生日", m:10, d:18 },
         { name:"セシリア・イマーグリーン", branch:"EN", kind:"誕生日", m:11, d:11, liveKind:"birthday", liveTitle:"3Dバースデーライブ「EVERGREEN REPRISE」", liveDate:"2026年11月14日 22:00 JST", liveUrl:"https://www.youtube.com/watch?v=RFKeljZW5s0" },
-        { name:"ネリッサ・レイヴンクロフト", branch:"EN", kind:"誕生日", m:11, d:21 },
+        { name:"ネリッサ・レイヴンクロフト", branch:"EN", kind:"誕生日", m:11, d:21, liveKind:"birthday", liveTitle:"バースデーセレブレーション「Of Blood and Jailbirds」", liveDate:"2026年11月22日 10:00 JST", liveUrl:"https://www.youtube.com/watch?v=wPe0DW46bRY" },
         /* ----- EN debut anniversaries ----- */
         { name:"エリザベス・ローズ・ブラッドフレイム", branch:"EN", kind:"デビュー記念日", m:6, d:22 },
         { name:"ジジ・ムリン", branch:"EN", kind:"デビュー記念日", m:6, d:22 },
@@ -577,7 +577,9 @@
         { date:d(2026,11,19), type:"cover", branch:"jp", pri:false, title:"「アンノウン・マザーグース」カバー MV公開", who:"獅白ぼたん", venue:"", note:"wowaka「アンノウン・マザーグース」のカバー。2026年11月19日18:00 JSTにプレミア公開。", yt:"https://www.youtube.com/watch?v=dNI9zh3zq_Q" },
         { date:d(2026,11,19), type:"song", branch:"jp", pri:false, title:"「前略、君に捧げるらびゅそんぐ！」MV公開", who:"桃鈴ねね", venue:"", note:"公式ゲーム『hololive Dreams（ホロドリ）』書き下ろしのソロ新曲。英題「Dear You, A Love Song Just for You!」。作詞：SARAH、作曲・編曲：宮川麿。", yt:"https://www.youtube.com/watch?v=_dpOzpLoIoA" },
         { date:d(2026,11,20), type:"live", cat:"event", branch:"jp", pri:false, title:"「hololive Next」第2回", who:"ホロライブ", venue:"", note:"18:50 JST〜。YAGOOとタレントがホロライブプロダクションの“これから”をお届け。新作麻雀ゲーム「ホロじゃん」の続報や、EXPO 2027＆8th fes.の続報も。", stream:"https://www.youtube.com/watch?v=QWb46fkCrys", src:"https://x.com/hololivetv/status/2122676128683049153", srcLabel:"出典ポスト" },
+        { date:d(2026,11,20), type:"live", cat:"anniversary", branch:"en", pri:false, title:"【3D KARAOKE】5周年記念（belated）カラオケ配信「Singing w/ Friends to celebrate my ANNIVERSARY?! + ANNOUNCEMENT」", who:"IRyS", venue:"", note:"12:00 JST開演。ゲストは古石ビジュー・ハコス・ベールズ・ネリッサ・レイヴンクロフト。告知あり。5周年は2026年7月11日で、本配信は遅れての記念祝い。", stream:"https://www.youtube.com/live/sSkB-FmWpeA", src:"https://x.com/kosekibijou/status/2123585005062586393", srcLabel:"出典ポスト" },
         { date:d(2026,11,21), type:"live", cat:"event", branch:"en", pri:true, title:"Shattered Legends Episode 2「Terror at the Brim」プレミア公開（Critical Role × hololive）", who:"ネリッサ・レイヴンクロフト、森カリオペ、シオリ・ノヴェラ、ジジ・ムリン", venue:"", note:"11:00 JST〜。Critical Role × hololive の Daggerheart 実際のプレイ・シリーズ第2話。ネリッサのYouTubeチャンネルでプレミア公開（米太平洋時間 11/20 18:00＝日本時間 11/21 11:00）。", stream:"https://www.youtube.com/watch?v=tRnWGzjlqS0", src:"https://x.com/nerissa_en/status/2123221292962992583", srcLabel:"出典ポスト" },
+        { date:d(2026,11,22), type:"live", cat:"birthday", branch:"en", pri:true, title:"バースデーセレブレーション「Of Blood and Jailbirds」", who:"ネリッサ・レイヴンクロフト", venue:"", note:"10:00 JST開演。オリジナルホラーストーリー企画の誕生日記念配信。誕生日（11月21日）の翌日開催。本人のYouTubeチャンネルで待機所を確認済み。", stream:"https://www.youtube.com/watch?v=wPe0DW46bRY" },
         { date:d(2026,11,22), type:"live", cat:"event", branch:"jp", pri:false, title:"「#ホロじゃん エンジョイ杯」（ホロじゃん初の大会）", who:"博衣こより（主催）", venue:"", note:"19:00〜開催。ホロじゃん初の大会。出場者：夏色まつり、大神ミオ、ラプラス・ダークネス、音乃瀬奏、水宮枢、空星そぴあ、鈴鳴つづり、百灯キョーコ。優勝賞品・役満賞・豪運賞・焼き鳥賞・こより賞あり。", stream:"https://www.youtube.com/live/q5Pw7TBGesE", src:"https://x.com/hakuikoyori/status/2123375503759597605", srcLabel:"出典ポスト" },
         { date:d(2026,11,23), type:"live", cat:"event", branch:"jp", pri:false, title:"「ホロドリトライアスロン」", who:"鷹嶺ルイ、フワワ・アビスガード ほか", venue:"", note:"11月23日（月・祝）19:00 JST〜。3種目のミニゲームで競い、優勝賞品は海外旅行ペア宿泊券。", src:"https://x.com/takanelui/status/2122633484556701719", srcLabel:"出典ポスト" },
         { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
