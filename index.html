@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月21日 20時51分（JST）";
-      var NEXT_CHECK = "2026年11月21日 21時51分（JST）";
+      var LAST_CHECKED = "2026年11月21日 21時51分（JST）";
+      var NEXT_CHECK = "2026年11月21日 22時51分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -405,7 +405,7 @@
         { name:"鷹嶺ルイ", branch:"JP", kind:"デビュー記念日", m:11, d:27 },
         { name:"博衣こより", branch:"JP", kind:"デビュー記念日", m:11, d:28 },
         { name:"風真いろは", branch:"JP", kind:"デビュー記念日", m:11, d:30 },
-        { name:"大神ミオ", branch:"JP", kind:"デビュー記念日", m:12, d:7 },
+        { name:"大神ミオ", branch:"JP", kind:"デビュー記念日", m:12, d:7, liveKind:"anniversary", liveTitle:"8周年記念3Dライブ", liveDate:"2026-12-07", liveUrl:"https://x.com/ookamimio/status/2124085392907567376" },
         { name:"天音かなた", branch:"JP", kind:"デビュー記念日", m:12, d:27 },
         { name:"角巻わため", branch:"JP", kind:"デビュー記念日", m:12, d:29 },
         /* ----- EN birthdays ----- */
@@ -584,6 +584,7 @@
         { date:d(2026,11,21), type:"live", cat:"event", branch:"en", pri:true, title:"Shattered Legends Episode 2「Terror at the Brim」プレミア公開（Critical Role × hololive）", who:"ネリッサ・レイヴンクロフト、森カリオペ、シオリ・ノヴェラ、ジジ・ムリン", venue:"", note:"11:00 JST〜。Critical Role × hololive の Daggerheart 実際のプレイ・シリーズ第2話。ネリッサのYouTubeチャンネルでプレミア公開（米太平洋時間 11/20 18:00＝日本時間 11/21 11:00）。", stream:"https://www.youtube.com/watch?v=tRnWGzjlqS0", src:"https://x.com/nerissa_en/status/2123221292962992583", srcLabel:"出典ポスト" },
         { date:d(2026,11,21), type:"live", cat:"event", branch:"jp", pri:false, title:"ホロライブ超高速麻雀 ノーカット版（「hololive Next」未公開対局・全編フルバージョン・プレミア公開 11/21 18:00）", who:"YAGOO、白上フブキ、大神ミオ、博衣こより", venue:"", note:"「hololive Next」未公開対局・全編フルバージョン。プレミア公開 11/21 18:00。", stream:"https://www.youtube.com/watch?v=deQYFottkL8", src:"https://x.com/hakuikoyori/status/2124102272489840713", srcLabel:"出典ポスト" },
         { date:d(2026,11,21), type:"song", branch:"id", pri:false, title:"「Halulu」（ホロドリ書き下ろし楽曲・Official MV公開、フルver.は11/22 21:00公開予定）", who:"パヴォリア・レイネ", venue:"", note:"ホロドリ書き下ろし楽曲。Official MV公開、フルver.は11/22 21:00公開予定。", yt:"https://www.youtube.com/watch?v=pzUoVO4Lf6o", src:"https://x.com/hololive_dreams/status/2124095486365696374", srcLabel:"出典ポスト" },
+        { date:d(2026,11,21), type:"song", branch:"jp", pri:false, title:"「ビギナーズハイ」リリース", who:"大神ミオ", venue:"", note:"新オリジナル曲。作詞・作曲・編曲：Adeliae。MVは2026年11月21日19:00にプレミア公開、楽曲の配信リリースは2026年11月21日0:00（当初11月22日0:00予定が1日早くリリース）。", yt:"https://www.youtube.com/watch?v=TZmaUP8ktzM", src:"https://x.com/ookamimio/status/2124084419950768638", srcLabel:"出典ポスト" },
         { date:d(2026,11,22), type:"live", cat:"birthday", branch:"en", pri:true, title:"バースデーセレブレーション「Of Blood and Jailbirds」", who:"ネリッサ・レイヴンクロフト", venue:"", note:"10:00 JST開演。オリジナルホラーストーリー企画の誕生日記念配信。誕生日（11月21日）の翌日開催。本人のYouTubeチャンネルで待機所を確認済み。", stream:"https://www.youtube.com/watch?v=wPe0DW46bRY" },
         { date:d(2026,11,22), type:"live", cat:"event", branch:"jp", pri:false, title:"「#ホロじゃん エンジョイ杯」（ホロじゃん初の大会）", who:"博衣こより（主催）", venue:"", note:"19:00〜開催。ホロじゃん初の大会。出場者：夏色まつり、大神ミオ、ラプラス・ダークネス、音乃瀬奏、水宮枢、空星そぴあ、鈴鳴つづり、百灯キョーコ。優勝賞品・役満賞・豪運賞・焼き鳥賞・こより賞あり。", stream:"https://www.youtube.com/live/q5Pw7TBGesE", src:"https://x.com/hakuikoyori/status/2123375503759597605", srcLabel:"出典ポスト" },
         { date:d(2026,11,23), type:"live", cat:"event", branch:"jp", pri:false, title:"「ホロドリトライアスロン」", who:"鷹嶺ルイ、フワワ・アビスガード ほか", venue:"", note:"11月23日（月・祝）19:00 JST〜。3種目のミニゲームで競い、優勝賞品は海外旅行ペア宿泊券。", src:"https://x.com/takanelui/status/2122633484556701719", srcLabel:"出典ポスト" },
@@ -596,6 +597,7 @@
         { date:d(2026,12,1),  type:"live", cat:"event", branch:"en", pri:false, title:"ハコス・ベールズ 1st Concert「REGALIA」ライブビューイング（映画館生中継）", who:"ハコス・ベールズ", venue:"", note:"12/1 18:30 JST、台湾・韓国・香港・マレーシア・タイ・オーストラリアの映画館で生中継するライブビューイング。Kanadevia Hallでの本公演（既存カードあり）とは別枠の映画館上映。", site:"https://regalia.hololivepro.com/news/05/", siteLabel:"詳細", site2:"https://www.liveviewing.com/hakos-baelz-1st-concert-regalia-live-viewing-in-cinemas", site2Label:"チケット", src:"https://x.com/hololive_En/status/2122540287113281914", srcLabel:"出典ポスト" },
         { date:d(2026,12,2),  type:"song", branch:"jp", pri:false, title:"2ndアルバム『Chemical Spark』リリース", who:"博衣こより", venue:"", note:"理系女子（リケジョ）がコンセプトの初の全国流通アルバム。書き下ろし新曲『ピンクになっちゃえ』（jon-YAKITORY）ほか、『爆ラブ＋ケミストリー』『管制塔より』『NaN GAME』などを収録。12/22の1stライブ『Dream Spark』と連動したリリース。公式クロスフェード動画も公開中。", yt:"https://www.youtube.com/watch?v=hXHc-Fg-pak", src:"https://www.mapion.co.jp/news/release/000001268.000030268-all/", srcLabel:"出典（PR TIMES）" },
         { date:d(2026,12,5),  type:"live", cat:"event", branch:"jp", pri:false, title:"hololive RECORDS DJ NIGHT", who:"hololive RECORDS", venue:"", note:"FC会員は抽選で無料招待。" },
+        { date:d(2026,12,7), type:"live", cat:"anniversary", branch:"jp", pri:false, title:"8周年記念3Dライブ", who:"大神ミオ", venue:"", note:"20:00 JST開演。大神ミオチャンネルでの配信のみの3Dライブ。デビュー8周年（12月7日）の記念ライブ。ゲストは後日発表予定。", src:"https://x.com/ookamimio/status/2124085392907567376", srcLabel:"出典ポスト" },
         { date:d(2026,12,9), type:"song", branch:"jp", pri:false, title:"「だって僕は」メジャーデビューシングル", who:"星街すいせい", venue:"", note:"ソニー・ミュージックのレーベル「Echoes」からのメジャーデビューシングル。2026年11月12日のアリーナツアー「Once Upon a Stellar」福岡公演で発表。『Stellar Stellar』のアンサーソング（TAKU INOUE）。MVは未公開。完全生産限定盤CD（2CD）も同日発売。", src:"https://skream.jp/news/2026/11/hoshimachisuisei_echoes.php", srcLabel:"出典記事" },
         { date:d(2026,12,16), type:"live", cat:"event", branch:"jp", pri:false, title:"鷹嶺ルイ 1stライブ「REBELLION」", who:"鷹嶺ルイ", venue:"Kanadevia Hall", note:"EP発売もあわせて発表されています。holoXの先輩ライブ。" },
         { date:d(2026,12,18), type:"live", cat:"event", branch:"jp", pri:true, title:"マリオカート8DX #ホロ年末CUP2026（常闇トワ・輪堂千速 主催のマリカ大会）", who:"常闇トワ、輪堂千速", venue:"", note:"2026年12月18日（金）17:00〜開催。常闇トワ・輪堂千速 主催のマリオカート8DX大会。", src:"https://x.com/tokoyamitowa/status/2123023855535210885", srcLabel:"出典ポスト" },
