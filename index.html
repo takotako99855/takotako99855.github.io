@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月24日 1時53分（JST）";
-      var NEXT_CHECK = "2026年11月24日 2時53分（JST）";
+      var LAST_CHECKED = "2026年11月24日 2時54分（JST）";
+      var NEXT_CHECK = "2026年11月24日 3時54分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -369,7 +369,7 @@
         { name:"白上フブキ", branch:"JP", kind:"誕生日", m:10, d:5 },
         { name:"姫森ルーナ", branch:"JP", kind:"誕生日", m:10, d:10 },
         { name:"雪花ラミィ", branch:"JP", kind:"誕生日", m:11, d:15, liveKind:"birthday", liveTitle:"生誕3Dライブ『BE BRAVER— 軌跡の先、光輝の彼方へ —』", liveDate:"2026-11-15", liveUrl:"https://www.youtube.com/watch?v=pnIli_xfMzc" },
-        { name:"白銀ノエル", branch:"JP", kind:"誕生日", m:11, d:24 },
+        { name:"白銀ノエル", branch:"JP", kind:"誕生日", m:11, d:24, liveKind:"birthday", liveTitle:"【#白銀ノエル生誕祭2026】誕生日パーティー（カラオケ採点）", liveDate:"2026-11-24", liveUrl:"https://www.youtube.com/watch?v=S9WBVmRt_h8" },
         { name:"百鬼あやめ", branch:"JP", kind:"誕生日", m:12, d:13 },
         /* ----- JP debut anniversaries ----- */
         { name:"常闇トワ", branch:"JP", kind:"デビュー記念日（7周年）", m:1, d:3 },
@@ -591,6 +591,7 @@
         { date:d(2026,11,23), type:"live", cat:"event", branch:"jp", pri:false, title:"「ホロドリトライアスロン」", who:"鷹嶺ルイ、フワワ・アビスガード ほか", venue:"", note:"11月23日（月・祝）19:00 JST〜。3種目のミニゲームで競い、優勝賞品は海外旅行ペア宿泊券。フワワ・アビスガードはお仕事のため欠場（2026年11月23日に鷹嶺ルイが発表）。", stream:"https://www.youtube.com/live/qREmVttAYn8", src:"https://x.com/takanelui/status/2122633484556701719", srcLabel:"出典ポスト" },
         { date:d(2026,11,23), type:"live", cat:"birthday", branch:"jp", pri:false, title:"【#白銀ノエル生誕カウントダウン】みんなで誕生日を迎えよう～🎉✨", who:"白銀ノエル", venue:"", note:"23:30 JST開始。誕生日カウントダウン配信（本編の生誕3Dライブではない）。", stream:"https://www.youtube.com/watch?v=w_bWduVfbK0" },
         { date:d(2026,11,24), type:"song", branch:"jp", pri:false, title:"「Reverberate」MV公開", who:"響咲リオナ", venue:"", note:"2ndオリジナル曲。2026年11月24日 0:00（11月23日 24:00）にOfficial MV公開・配信リリース。作詞：馬場龍樹、作曲：馬場龍樹・石口侑弥、編曲：石口侑弥。", yt:"https://www.youtube.com/watch?v=YnvABKEizsE", src:"https://www.youtube.com/watch?v=YnvABKEizsE", srcLabel:"出典（公式MVページ）" },
+        { date:d(2026,11,24), type:"live", cat:"birthday", branch:"jp", pri:false, title:"【#白銀ノエル生誕祭2026】誕生日パーティー（カラオケ採点）", who:"白銀ノエル", venue:"", note:"20:00 JST開始。誕生日パーティー配信（カラオケ採点）。生誕3Dライブ＆グッズは後日発表。", stream:"https://www.youtube.com/watch?v=S9WBVmRt_h8", src:"https://www.youtube.com/watch?v=S9WBVmRt_h8", srcLabel:"出典" },
         { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"en", pri:true, title:"hololive Meet SUPER KARAOKE PARTY（DreamHack Stockholm 2026）", who:"森カリオペ、ネリッサ・レイヴンクロフト、エリザベス・ローズ・ブラッドフレイム", venue:"Victoriahallen（Victoria Hall）、Stockholmsmässan（ストックホルム）", note:"DreamHack Stockholm 2026でのhololive Meetライブステージ。2026年11月28日（土）13:00 CET（ストックホルム時間）開催。", src:"https://holostars.hololivepro.com/en/news/20261019-01-43/", srcLabel:"公式発表ページ" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"jp", pri:false, title:"11/28 イベント開催（重大発表あり・開始時刻未定）", who:"虎金妃笑虎", venue:"", note:"11月9日の2周年記念歌枠で発表された、11月28日開催のイベント。重大発表あり。開始時刻は未定で、決まり次第告知される。", src:"https://daily-superchat.inkwire.workers.dev/story/WYg7Qpux_mA/", srcLabel:"出典" },
