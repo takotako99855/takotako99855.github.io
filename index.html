@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月25日 8時54分（JST）";
-      var NEXT_CHECK = "2026年11月25日 9時54分（JST）";
+      var LAST_CHECKED = "2026年11月25日 10時53分（JST）";
+      var NEXT_CHECK = "2026年11月25日 11時53分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -401,7 +401,7 @@
         { name:"大空スバル", branch:"JP", kind:"デビュー記念日", m:9, d:16 },
         { name:"FLOW GLOW", branch:"JP", kind:"デビュー記念日（2周年）", m:11, d:9 },
         { name:"AZKi", branch:"JP", kind:"デビュー記念日", m:11, d:15, liveKind:"anniversary", liveTitle:"#AZKi8周年 記念配信（88曲耐久歌枠＆重大告知8つ）", liveDate:"2026-11-15", liveUrl:"https://www.youtube.com/live/0AmVXqb8DAo" },
-        { name:"ラプラス・ダークネス", branch:"JP", kind:"デビュー記念日（5周年）", m:11, d:26 },
+        { name:"ラプラス・ダークネス", branch:"JP", kind:"デビュー記念日（5周年）", m:11, d:26, liveKind:"anniversary", liveTitle:"holoX 5周年記念配信", liveDate:"2026-11-26", liveUrl:"https://www.youtube.com/watch?v=6OQlvwxsxnI" },
         { name:"鷹嶺ルイ", branch:"JP", kind:"デビュー記念日", m:11, d:27 },
         { name:"博衣こより", branch:"JP", kind:"デビュー記念日", m:11, d:28 },
         { name:"風真いろは", branch:"JP", kind:"デビュー記念日", m:11, d:30 },
@@ -594,7 +594,8 @@
         { date:d(2026,11,24), type:"song", branch:"jp", pri:false, title:"「Reverberate」MV公開", who:"響咲リオナ", venue:"", note:"2ndオリジナル曲。2026年11月24日 0:00（11月23日 24:00）にOfficial MV公開・配信リリース。作詞：馬場龍樹、作曲：馬場龍樹・石口侑弥、編曲：石口侑弥。", yt:"https://www.youtube.com/watch?v=YnvABKEizsE", src:"https://www.youtube.com/watch?v=YnvABKEizsE", srcLabel:"出典（公式MVページ）" },
         { date:d(2026,11,24), type:"song", branch:"jp", pri:false, title:"ヒカリノ海へ（新オリジナル曲・MVプレミア公開 11/24 21:00）", who:"白銀ノエル", venue:"", note:"新オリジナル曲「ヒカリノ海へ」のMVプレミア公開（2026年11月24日 21:00〜）。作詞：白銀ノエル・MANYO、作曲・編曲：MANYO。", yt:"https://www.youtube.com/watch?v=mXZ0xmZ1f74", src:"https://www.youtube.com/watch?v=mXZ0xmZ1f74", srcLabel:"出典" },
         { date:d(2026,11,24), type:"live", cat:"birthday", branch:"jp", pri:false, title:"【#白銀ノエル生誕祭2026】誕生日パーティー（カラオケ採点）", who:"白銀ノエル", venue:"", note:"20:00 JST開始。誕生日パーティー配信（カラオケ採点）。生誕3Dライブ＆グッズは後日発表。", stream:"https://www.youtube.com/watch?v=S9WBVmRt_h8", src:"https://www.youtube.com/watch?v=S9WBVmRt_h8", srcLabel:"出典" },
-        { date:d(2026,11,26), type:"live", cat:"anniversary", branch:"jp", pri:true, title:"holoX 5周年記念配信", who:"ラプラス・ダークネス", venue:"", note:"19:00〜。5周年記念配信ウィーク。2026年11月19日のholoXオフコラボ配信「【オフコラボ】セルフ3Dで#SSholoX 格付けバトル」で5周年記念配信ウィークとして告知されたもの。専用待機所はまだ無いため、この告知配信のURLを出典として表示し、待機所が立ったら差し替える。", src:"https://www.youtube.com/watch?v=t6BO3oyVbqE", srcLabel:"出典（告知配信）" },
+        { date:d(2026,11,25), type:"song", branch:"jp", pri:true, title:"「Holiday Dream」リリース（ホロドリ新オリジナル曲）", who:"さくらみこ、姫森ルーナ、Ninomae Ina'nis、シオリ・ノヴェラ", venue:"", note:"ホロドリ新オリジナル曲「Holiday Dream」。Official MVプレミア公開 11/25 20:00（ホロライブドリームス公式チャンネル）。作詞：Kelly、作曲・編曲：Snail's House。配信サービスは12月中旬予定。", yt:"https://www.youtube.com/watch?v=K18AokpGnBs", src:"https://www.youtube.com/watch?v=K18AokpGnBs", srcLabel:"出典" },
+        { date:d(2026,11,26), type:"live", cat:"anniversary", branch:"jp", pri:true, title:"holoX 5周年記念配信", who:"ラプラス・ダークネス", venue:"", note:"19:00〜。5周年記念配信ウィーク。2026年11月19日のholoXオフコラボ配信「【オフコラボ】セルフ3Dで#SSholoX 格付けバトル」で5周年記念配信ウィークとして告知されたもの。専用待機所が公開された（待機所タイトル：「【５周年】ついに５年も生き残ったということでまあ語ろうや！感謝の雑談配信！いろいろ準備しましたぞ！#ラプ様５周年記念」）。", stream:"https://www.youtube.com/watch?v=6OQlvwxsxnI" },
         { date:d(2026,11,27), type:"live", cat:"anniversary", branch:"jp", pri:false, title:"holoX 5周年記念配信", who:"鷹嶺ルイ", venue:"", note:"20:00〜。5周年記念配信ウィーク。2026年11月19日のholoXオフコラボ配信で告知。専用待機所はまだ無いため、告知配信のURLを出典として表示。", src:"https://www.youtube.com/watch?v=t6BO3oyVbqE", srcLabel:"出典（告知配信）" },
         { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"en", pri:true, title:"hololive Meet SUPER KARAOKE PARTY（DreamHack Stockholm 2026）", who:"森カリオペ、ネリッサ・レイヴンクロフト、エリザベス・ローズ・ブラッドフレイム", venue:"Victoriahallen（Victoria Hall）、Stockholmsmässan（ストックホルム）", note:"DreamHack Stockholm 2026でのhololive Meetライブステージ。2026年11月28日（土）13:00 CET（ストックホルム時間）開催。", src:"https://holostars.hololivepro.com/en/news/20261019-01-43/", srcLabel:"公式発表ページ" },
