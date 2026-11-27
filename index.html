@@ -300,8 +300,8 @@
       /* ===== 最終チェック日時／次回チェック日時（単一データ項目） =====
          ページ上部の「最終チェック日時」「次回チェック日時」表示はこれらの値だけから生成されます。
          次回チェック時はこれらの値だけを差し替えてください。 */
-      var LAST_CHECKED = "2026年11月28日 5時55分（JST）";
-      var NEXT_CHECK = "2026年11月28日 6時55分（JST）";
+      var LAST_CHECKED = "2026年11月28日 7時56分（JST）";
+      var NEXT_CHECK = "2026年11月28日 8時56分（JST）";
       var TODAY = new Date(); TODAY.setHours(0,0,0,0);
       var DOW = ["日","月","火","水","木","金","土"];
       document.getElementById("last-checked-value").textContent = LAST_CHECKED;
@@ -403,7 +403,7 @@
         { name:"AZKi", branch:"JP", kind:"デビュー記念日", m:11, d:15, liveKind:"anniversary", liveTitle:"#AZKi8周年 記念配信（88曲耐久歌枠＆重大告知8つ）", liveDate:"2026-11-15", liveUrl:"https://www.youtube.com/live/0AmVXqb8DAo" },
         { name:"ラプラス・ダークネス", branch:"JP", kind:"デビュー記念日（5周年）", m:11, d:26, liveKind:"anniversary", liveTitle:"holoX 5周年記念配信", liveDate:"2026-11-26", liveUrl:"https://www.youtube.com/watch?v=6OQlvwxsxnI" },
         { name:"鷹嶺ルイ", branch:"JP", kind:"デビュー記念日", m:11, d:27, liveKind:"anniversary", liveTitle:"holoX 5周年記念配信", liveDate:"2026-11-27", liveUrl:"https://www.youtube.com/watch?v=vkRqjfp0qWc" },
-        { name:"博衣こより", branch:"JP", kind:"デビュー記念日", m:11, d:28 },
+        { name:"博衣こより", branch:"JP", kind:"デビュー記念日", m:11, d:28, liveKind:"anniversary", liveTitle:"5周年記念配信「#博衣こより5周年ガンダムロケ」スペシャルロケ映像プレミア", liveDate:"2026-11-28", liveUrl:"https://www.youtube.com/watch?v=tgE4n3G6Va4" },
         { name:"風真いろは", branch:"JP", kind:"デビュー記念日", m:11, d:30 },
         { name:"大神ミオ", branch:"JP", kind:"デビュー記念日", m:12, d:7, liveKind:"anniversary", liveTitle:"8周年記念3Dライブ", liveDate:"2026-12-07", liveUrl:"https://x.com/ookamimio/status/2124085392907567376" },
         { name:"天音かなた", branch:"JP", kind:"デビュー記念日", m:12, d:27 },
@@ -608,7 +608,7 @@
         { date:d(2026,11,27), type:"live", cat:"event", branch:"en", pri:false, title:"hololive Meet @ DreamHack Stockholm 2026（〜11/29）", who:"hololive production", venue:"Stockholmsmässan（スウェーデン）", note:"hololive Meet初のスウェーデン開催。ブース、ミート＆グリート、ライブステージあり。公式ニュースで10/19に発表。" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"en", pri:true, title:"hololive Meet SUPER KARAOKE PARTY（DreamHack Stockholm 2026）", who:"森カリオペ、ネリッサ・レイヴンクロフト、エリザベス・ローズ・ブラッドフレイム", venue:"Victoriahallen（Victoria Hall）、Stockholmsmässan（ストックホルム）", note:"DreamHack Stockholm 2026でのhololive Meetライブステージ。2026年11月28日（土）13:00 CET（ストックホルム時間）開催。", src:"https://holostars.hololivepro.com/en/news/20261019-01-43/", srcLabel:"公式発表ページ" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"jp", pri:false, title:"11/28 イベント開催（重大発表あり・開始時刻未定）", who:"虎金妃笑虎", venue:"", note:"11月9日の2周年記念歌枠で発表された、11月28日開催のイベント。重大発表あり。開始時刻は未定で、決まり次第告知される。", src:"https://daily-superchat.inkwire.workers.dev/story/WYg7Qpux_mA/", srcLabel:"出典" },
-        { date:d(2026,11,28), type:"live", cat:"anniversary", branch:"jp", pri:false, title:"5周年記念LIVE", who:"博衣こより", venue:"", note:"20:00 JST開演予定。デビュー5周年（11月28日）の記念ライブ。11月27日 23:30の5周年カウントダウン配信の専用待機所は https://www.youtube.com/watch?v=JnsVu0Nwq4g（2026年11月27日 17:50に確認）。5周年記念LIVE本体の専用待機所は未公開（2026年11月27日 20:40時点）。本人の週間スケジュール画像（リンク先はフリーチャット＆スケジュール枠で、そのサムネイルに週間スケジュール表あり）で告知。", src:"https://www.youtube.com/watch?v=0vD220xScBE", srcLabel:"出典動画（週間スケジュール表つきフリーチャット枠）" },
+        { date:d(2026,11,28), type:"live", cat:"anniversary", branch:"jp", pri:false, title:"5周年記念配信「#博衣こより5周年ガンダムロケ」スペシャルロケ映像プレミア", who:"博衣こより", venue:"", note:"20:00 JST〜。デビュー5周年（11月28日）の記念配信。ガンダムを巡るスペシャルロケ映像のプレミア公開（重大告知あり）。出演：一伊那尓栖・輪堂千速。週間スケジュールの11/28 20:00「5周年配信」枠に一致する唯一の待機所で、2026年11月28日 06:50にチャンネルで直接確認。「5周年記念ライブ」名義の別の待機所はなし。", stream:"https://www.youtube.com/watch?v=tgE4n3G6Va4", src:"https://www.youtube.com/watch?v=tgE4n3G6Va4", srcLabel:"待機所" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"en", pri:true, title:"Shattered Legends Episode 3「A Mysterious History」プレミア公開（Critical Role × hololive）", who:"ネリッサ・レイヴンクロフト、森カリオペ、シオリ・ノヴェラ、ジジ・ムリン", venue:"", note:"11:00 JST〜。Critical Role × hololive の Daggerheart 実際のプレイ・シリーズ第3話。ネリッサのYouTubeチャンネルでプレミア公開（金曜18:00 PST／土曜11:00 JSTの週次プレミア、米太平洋時間 11/27 18:00＝日本時間 11/28 11:00）。", stream:"https://www.youtube.com/watch?v=wOompxCQgCQ", src:"https://x.com/nerissa_en/status/2125771742757195776", srcLabel:"出典ポスト" },
         { date:d(2026,11,28), type:"live", cat:"event", branch:"jp", pri:false, title:"『#ホロカWGP2627東京』決勝ラウンド振り返り生配信", who:"hololive OFFICIAL CARD GAME", venue:"", note:"16:00〜。特別ゲスト 百灯キョーコと一緒に決勝ラウンドを振り返る生配信。バトルの合間に最新カード情報、番組の最後に重大告知あり。", stream:"https://www.youtube.com/live/x5hJfxjc6GM", src:"https://x.com/hololive_OCG/status/2125907420442751472", srcLabel:"出典ポスト" },
         { date:d(2026,11,29), type:"song", branch:"en", pri:true, title:"「My Horizon」フルアニメMV（TVサイズ）", who:"ハコス・ベールズ（with ネリッサ・レイヴンクロフト）", venue:"", note:"楽曲自体はハコス・ベールズ 2ndアルバム「Mirror Mirror」（2026-11-02発売）収録曲で、今回の新着はフルアニメMVのプレミア公開の告知。2026-11-15のネリッサ・レイヴンクロフトとのオフコラボカラオケ配信で発表された。2026年11月29日0:00 JSTにプレミア公開予定。", src:"https://daily-superchat.inkwire.workers.dev/story/VqkiTQbWk0c/", srcLabel:"出典" },
